@@ -1,0 +1,2043 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#05070c" />
+
+  <title>Felix 18.0 // Birthday 2026</title>
+
+  <style>
+    :root {
+      --bg: #05070c;
+      --bg2: #090d16;
+
+      --glass: rgba(15, 23, 38, 0.72);
+      --glass2: rgba(255,255,255,0.055);
+
+      --border: rgba(255,255,255,0.12);
+
+      --text: #f7f8ff;
+      --muted: #9ba5b8;
+
+      --purple: #8c4cff;
+      --blue: #58a6ff;
+      --cyan: #50e6ff;
+      --green: #54ef8f;
+
+      --radius: 22px;
+      --shadow: 0 25px 80px rgba(0,0,0,.5);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 50% -10%, rgba(80,110,255,.20), transparent 35%),
+        radial-gradient(circle at 85% 25%, rgba(140,76,255,.12), transparent 30%),
+        linear-gradient(180deg, #05070c, #03050a);
+      color: var(--text);
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Display",
+        "Segoe UI",
+        Arial,
+        sans-serif;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .04;
+      background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.7'/%3E%3C/svg%3E");
+      z-index: 999;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    .glass {
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,.08),
+          rgba(255,255,255,.025)
+        );
+      border: 1px solid var(--border);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.07),
+        var(--shadow);
+    }
+
+    .container {
+      width: min(1100px, calc(100% - 28px));
+      margin: auto;
+    }
+
+    /* NAV */
+
+    .nav {
+      position: fixed;
+      top: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(1050px, calc(100% - 26px));
+      height: 60px;
+      border-radius: 20px;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 18px;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: -.02em;
+      font-size: .94rem;
+    }
+
+    .brand span {
+      color: #8eb4ff;
+    }
+
+    .desktop-nav {
+      display: flex;
+      gap: 26px;
+      font-size: .84rem;
+      color: var(--muted);
+    }
+
+    .desktop-nav a:hover {
+      color: white;
+    }
+
+    .date-pill {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid var(--border);
+      font-size: .78rem;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 100svh;
+      padding-top: 130px;
+      padding-bottom: 80px;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-inner {
+      width: 100%;
+    }
+
+    .access-card {
+      border-radius: 26px;
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .access-card::after {
+      content: "";
+      position: absolute;
+      left: -10%;
+      right: -10%;
+      bottom: -100px;
+      height: 220px;
+      border-radius: 50%;
+      background:
+        radial-gradient(
+          ellipse at center,
+          rgba(113,79,255,.7),
+          rgba(46,86,255,.15) 35%,
+          transparent 67%
+        );
+      filter: blur(8px);
+      pointer-events: none;
+    }
+
+    .terminal-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--muted);
+      font-family: monospace;
+      font-size: .72rem;
+      margin-bottom: 40px;
+    }
+
+    .status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 14px var(--green);
+    }
+
+    .hero-title {
+      margin: 0;
+      font-size: clamp(3.8rem, 13vw, 8rem);
+      letter-spacing: -.075em;
+      line-height: .9;
+      font-weight: 850;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-title span {
+      background:
+        linear-gradient(
+          100deg,
+          #fff,
+          #a0b8ff 45%,
+          #8e4dff 80%
+        );
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .birthday-text {
+      margin-top: 18px;
+      letter-spacing: .45em;
+      font-size: .8rem;
+      color: #b9caef;
+      text-transform: uppercase;
+    }
+
+    .hero-description {
+      max-width: 620px;
+      color: var(--muted);
+      margin-top: 28px;
+      line-height: 1.7;
+      position: relative;
+      z-index: 2;
+    }
+
+    .event-date {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 20px;
+      padding: 11px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid var(--border);
+      font-family: monospace;
+      font-size: .82rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* COUNTDOWN */
+
+    .countdown {
+      margin-top: 32px;
+      border-radius: 22px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      position: relative;
+      z-index: 2;
+    }
+
+    .count-box {
+      text-align: center;
+      padding: 22px 10px;
+      border-right: 1px solid var(--border);
+    }
+
+    .count-box:last-child {
+      border-right: none;
+    }
+
+    .count-number {
+      display: block;
+      font-family: monospace;
+      font-size: clamp(1.5rem, 6vw, 2.7rem);
+      letter-spacing: -.06em;
+    }
+
+    .count-label {
+      color: var(--muted);
+      font-size: .65rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-top: 6px;
+    }
+
+    /* QUICK NAV */
+
+    .quick-nav {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+    }
+
+    .quick-button {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 15px 8px;
+      background: rgba(255,255,255,.035);
+      color: white;
+      cursor: pointer;
+      text-align: center;
+      transition: .25s;
+    }
+
+    .quick-button:hover {
+      transform: translateY(-4px);
+      border-color: rgba(100,160,255,.45);
+      background: rgba(80,110,255,.09);
+    }
+
+    .quick-icon {
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+      color: #8db7ff;
+    }
+
+    .quick-label {
+      font-size: .62rem;
+      text-transform: uppercase;
+    }
+
+    /* SECTIONS */
+
+    section.content {
+      padding: 95px 0;
+    }
+
+    .section-tag {
+      color: #77a8ff;
+      font-family: monospace;
+      font-size: .74rem;
+      letter-spacing: .09em;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(2.1rem, 8vw, 4.6rem);
+      letter-spacing: -.055em;
+      margin: 0 0 35px;
+    }
+
+    /* INFO */
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    .info-card {
+      border-radius: 20px;
+      padding: 22px;
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+    }
+
+    .icon-box {
+      min-width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      background: rgba(130,80,255,.11);
+      border: 1px solid rgba(140,80,255,.18);
+      display: grid;
+      place-items: center;
+      font-size: 1.35rem;
+    }
+
+    .info-label {
+      font-size: .67rem;
+      text-transform: uppercase;
+      color: var(--muted);
+      letter-spacing: .08em;
+    }
+
+    .info-value {
+      margin-top: 6px;
+      font-size: 1.04rem;
+      font-weight: 700;
+    }
+
+    .info-small {
+      color: var(--muted);
+      font-size: .78rem;
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+
+    .code-message {
+      margin-top: 18px;
+      border-radius: 20px;
+      padding: 24px;
+      font-family: monospace;
+      line-height: 1.7;
+      color: #aab5cb;
+    }
+
+    .code-message strong {
+      color: #b886ff;
+    }
+
+    .code-message .green {
+      color: var(--green);
+    }
+
+    /* TIMELINE */
+
+    .timeline {
+      position: relative;
+      border-radius: 24px;
+      padding: 28px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 38px;
+      top: 45px;
+      bottom: 45px;
+      width: 1px;
+      background:
+        linear-gradient(
+          var(--cyan),
+          var(--purple),
+          #ffba4d
+        );
+      opacity: .5;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 48px;
+      margin-bottom: 18px;
+    }
+
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 4px;
+      top: 22px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: white;
+      border: 3px solid var(--cyan);
+      box-shadow: 0 0 18px var(--cyan);
+    }
+
+    .timeline-card {
+      padding: 20px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.035);
+      border: 1px solid var(--border);
+    }
+
+    .timeline-time {
+      font-family: monospace;
+      font-size: .72rem;
+      color: #c5cce0;
+      margin-bottom: 8px;
+    }
+
+    .timeline-card h3 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+    }
+
+    .timeline-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: .84rem;
+    }
+
+    /* MUSIC */
+
+    .music-card,
+    .photo-card,
+    .share-card {
+      border-radius: 24px;
+      padding: 28px;
+    }
+
+    .music-card p,
+    .photo-card p,
+    .share-card p {
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .song-form {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .song-form input {
+      flex: 1;
+      background: rgba(255,255,255,.05);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 15px;
+      color: white;
+      outline: none;
+    }
+
+    .song-form input:focus {
+      border-color: rgba(110,140,255,.7);
+      box-shadow: 0 0 0 4px rgba(80,100,255,.08);
+    }
+
+    .primary-btn {
+      border: none;
+      border-radius: 14px;
+      padding: 0 22px;
+      color: white;
+      cursor: pointer;
+      font-weight: 700;
+      background:
+        linear-gradient(90deg, #754cff, #9a35ff);
+      box-shadow:
+        0 10px 30px rgba(120,60,255,.25);
+    }
+
+    .wishlist {
+      margin-top: 20px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .song {
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      font-size: .8rem;
+      color: #c1cade;
+    }
+
+    .song:last-child {
+      border-bottom: none;
+    }
+
+    .song-like {
+      background: transparent;
+      border: none;
+      color: #c1cade;
+      font: inherit;
+      cursor: pointer;
+      padding: 4px 8px;
+      border-radius: 8px;
+      transition: .2s;
+    }
+
+    .song-like:hover {
+      background: rgba(255,255,255,.06);
+      color: white;
+    }
+
+    .song-like:disabled {
+      cursor: default;
+      opacity: .6;
+    }
+
+    .wishlist-empty,
+    .photo-empty {
+      padding: 16px;
+      color: var(--muted);
+      font-size: .8rem;
+      text-align: center;
+    }
+
+    /* PHOTOS */
+
+    .upload-zone {
+      margin-top: 20px;
+      border-radius: 18px;
+      padding: 35px 20px;
+      border: 1px dashed rgba(180,195,220,.3);
+      text-align: center;
+      cursor: pointer;
+      transition: .25s;
+    }
+
+    .upload-zone:hover {
+      background: rgba(255,255,255,.035);
+      border-color: #7fa7ff;
+    }
+
+    .upload-zone strong {
+      display: block;
+      margin-top: 10px;
+    }
+
+    .upload-zone small {
+      color: var(--muted);
+    }
+
+    .photo-grid {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 10px;
+    }
+
+    .photo-thumb {
+      aspect-ratio: 1;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.03);
+    }
+
+    .photo-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* SHARE */
+
+    .share-card {
+      text-align: center;
+    }
+
+    .qr {
+      width: 190px;
+      height: 190px;
+      margin: 25px auto;
+      border-radius: 18px;
+      background:
+        repeating-linear-gradient(
+          45deg,
+          #fff 0 8px,
+          #131827 8px 16px
+        );
+      border: 12px solid white;
+      box-shadow: 0 20px 50px rgba(0,0,0,.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .qr::before,
+    .qr::after {
+      content: "";
+      position: absolute;
+      width: 45px;
+      height: 45px;
+      border: 10px solid #111827;
+      background: white;
+    }
+
+    .qr::before {
+      top: 5px;
+      left: 5px;
+    }
+
+    .qr::after {
+      right: 5px;
+      bottom: 5px;
+    }
+
+    .url-box {
+      display: flex;
+      margin: auto;
+      max-width: 440px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .url-box span {
+      flex: 1;
+      padding: 14px;
+      color: #bac5db;
+      font-family: monospace;
+      font-size: .75rem;
+    }
+
+    .url-box button {
+      width: 55px;
+      background: transparent;
+      border: none;
+      border-left: 1px solid var(--border);
+      color: white;
+      cursor: pointer;
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 50px 20px 80px;
+      text-align: center;
+      color: #6d778c;
+      font-family: monospace;
+      font-size: .72rem;
+    }
+
+    footer span {
+      color: #53e88f;
+    }
+
+    /* TERMINAL */
+
+    .terminal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 500;
+      background: rgba(0,0,0,.7);
+      backdrop-filter: blur(14px);
+      display: none;
+      place-items: center;
+      padding: 20px;
+    }
+
+    .terminal-overlay.active {
+      display: grid;
+    }
+
+    .terminal {
+      width: min(700px, 100%);
+      min-height: 340px;
+      border-radius: 22px;
+      overflow: hidden;
+    }
+
+    .terminal-bar {
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .dots {
+      display: flex;
+      gap: 7px;
+    }
+
+    .dots i {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.22);
+    }
+
+    .close {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.6rem;
+      cursor: pointer;
+    }
+
+    .terminal-body {
+      padding: 22px;
+      font-family: monospace;
+      font-size: .8rem;
+      line-height: 1.8;
+      color: #bdc6d8;
+    }
+
+    .terminal-body .cmd {
+      color: var(--green);
+    }
+
+    /* REVEAL */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(25px);
+      transition:
+        opacity .8s ease,
+        transform .8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 720px) {
+
+      .desktop-nav {
+        display: none;
+      }
+
+      .date-pill {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 105px;
+      }
+
+      .access-card {
+        padding: 20px;
+      }
+
+      .quick-nav {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 7px;
+      }
+
+      .quick-button {
+        padding: 12px 3px;
+      }
+
+      .quick-label {
+        font-size: .52rem;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .countdown {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .count-box:nth-child(2) {
+        border-right: none;
+      }
+
+      .count-box:nth-child(1),
+      .count-box:nth-child(2) {
+        border-bottom: 1px solid var(--border);
+      }
+
+      .song-form {
+        flex-direction: column;
+      }
+
+      .primary-btn {
+        padding: 15px;
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+
+  <nav class="nav glass">
+    <a href="#home" class="brand">
+      <span>FELIX</span> // 18.0
+    </a>
+
+    <div class="desktop-nav">
+      <a href="#info">Info</a>
+      <a href="#ablauf">Ablauf</a>
+      <a href="#musik">Musik</a>
+      <a href="#fotos">Fotos</a>
+    </div>
+
+    <div class="date-pill">
+      15.08.2026
+    </div>
+  </nav>
+
+
+  <!-- HERO -->
+
+  <section class="hero" id="home">
+
+    <div class="container hero-inner">
+
+      <div class="access-card glass reveal">
+
+        <div class="terminal-top">
+          <div class="status">
+            <span class="status-dot"></span>
+            ACCESS GRANTED
+          </div>
+
+          <span>&lt;/&gt;</span>
+        </div>
+
+        <h1 class="hero-title">
+          FELIX <span>18.0</span>
+        </h1>
+
+        <div class="birthday-text">
+          Birthday 2026
+        </div>
+
+        <p class="hero-description">
+          Two Days. One Celebration. Unforgettable Memories.
+          Willkommen zu Felix Birthday 2026.
+        </p>
+
+        <div class="event-date">
+          📅 15.08.2026 → 16.08.2026
+        </div>
+
+
+        <!-- COUNTDOWN -->
+
+        <div class="countdown glass">
+
+          <div class="count-box">
+            <span class="count-number" id="days">00</span>
+            <div class="count-label">Tage</div>
+          </div>
+
+          <div class="count-box">
+            <span class="count-number" id="hours">00</span>
+            <div class="count-label">Stunden</div>
+          </div>
+
+          <div class="count-box">
+            <span class="count-number" id="minutes">00</span>
+            <div class="count-label">Minuten</div>
+          </div>
+
+          <div class="count-box">
+            <span class="count-number" id="seconds">00</span>
+            <div class="count-label">Sekunden</div>
+          </div>
+
+        </div>
+
+
+        <!-- QUICK NAV -->
+
+        <div class="quick-nav">
+
+          <a href="#info" class="quick-button">
+            <div class="quick-icon">ⓘ</div>
+            <div class="quick-label">Info</div>
+          </a>
+
+          <a href="#ablauf" class="quick-button">
+            <div class="quick-icon">◷</div>
+            <div class="quick-label">Ablauf</div>
+          </a>
+
+          <a href="#musik" class="quick-button">
+            <div class="quick-icon">♫</div>
+            <div class="quick-label">Musik</div>
+          </a>
+
+          <a href="#fotos" class="quick-button">
+            <div class="quick-icon">▧</div>
+            <div class="quick-label">Fotos</div>
+          </a>
+
+          <button onclick="openTerminal()" class="quick-button">
+            <div class="quick-icon">&lt;/&gt;</div>
+            <div class="quick-label">Dev</div>
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- INFO -->
+
+  <section class="content" id="info">
+
+    <div class="container">
+
+      <div class="section-tag reveal">
+        // EVENT INFO
+      </div>
+
+      <h2 class="section-title reveal">
+        Alle wichtigen Details.
+      </h2>
+
+      <div class="info-grid">
+
+        <div class="info-card glass reveal">
+
+          <div class="icon-box">
+            📅
+          </div>
+
+          <div>
+            <div class="info-label">
+              Datum
+            </div>
+
+            <div class="info-value">
+              15.08.2026 – 16.08.2026
+            </div>
+
+            <div class="info-small">
+              Start aktuell geplant um 18:00 Uhr.
+            </div>
+          </div>
+
+        </div>
+
+
+        <div class="info-card glass reveal">
+
+          <div class="icon-box">
+            📍
+          </div>
+
+          <div>
+            <div class="info-label">
+              Location
+            </div>
+
+            <div class="info-value">
+              Geheim 🤫
+            </div>
+
+            <div class="info-small">
+              Die genaue Adresse kannst du hier später eintragen.
+            </div>
+          </div>
+
+        </div>
+
+
+        <div class="info-card glass reveal">
+
+          <div class="icon-box">
+            ◷
+          </div>
+
+          <div>
+            <div class="info-label">
+              Dresscode
+            </div>
+
+            <div class="info-value">
+              Casual
+            </div>
+
+            <div class="info-small">
+              Be you. Bring good vibes.
+            </div>
+          </div>
+
+        </div>
+
+
+        <div class="info-card glass reveal">
+
+          <div class="icon-box">
+            ☆
+          </div>
+
+          <div>
+            <div class="info-label">
+              Besonderes
+            </div>
+
+            <div class="info-value">
+              Zwei Tage Party
+            </div>
+
+            <div class="info-small">
+              Musik, Drinks, Freunde und Erinnerungen.
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="code-message glass reveal">
+
+        <strong>READY FOR TAKEOFF?</strong>
+
+        <br><br>
+
+        Lasst uns gemeinsam feiern,
+        als gäbe es keinen Morgen!
+
+        <br><br>
+
+        <span class="green">
+          console.log("See you there! 🚀");
+        </span>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ABLAUF -->
+
+  <section class="content" id="ablauf">
+
+    <div class="container">
+
+      <div class="section-tag reveal">
+        // TIMELINE
+      </div>
+
+      <h2 class="section-title reveal">
+        Ablauf.
+      </h2>
+
+
+      <div class="timeline glass reveal">
+
+
+        <div class="timeline-item">
+
+          <div class="timeline-dot"></div>
+
+          <div class="timeline-card">
+
+            <div class="timeline-time">
+              18:00
+            </div>
+
+            <h3>
+              Check-In & Welcome Drink
+            </h3>
+
+            <p>
+              Ankommen, Leute treffen und gemeinsam
+              in den Abend starten.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+          <div class="timeline-dot"></div>
+
+          <div class="timeline-card">
+
+            <div class="timeline-time">
+              20:00
+            </div>
+
+            <h3>
+              Dinner Time
+            </h3>
+
+            <p>
+              Gutes Essen für gute Energie.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+          <div class="timeline-dot"></div>
+
+          <div class="timeline-card">
+
+            <div class="timeline-time">
+              22:00
+            </div>
+
+            <h3>
+              Party Start
+            </h3>
+
+            <p>
+              Musik an. Alltag aus.
+              Feiern wir.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+          <div class="timeline-dot"></div>
+
+          <div class="timeline-card">
+
+            <div class="timeline-time">
+              02:00
+            </div>
+
+            <h3>
+              Afterparty Mode
+            </h3>
+
+            <p>
+              Wer jetzt noch kann,
+              kann noch lange.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+          <div class="timeline-dot"></div>
+
+          <div class="timeline-card">
+
+            <div class="timeline-time">
+              16.08.
+            </div>
+
+            <h3>
+              Recovery & Chill
+            </h3>
+
+            <p>
+              Chillen, quatschen und Erinnerungen sammeln.
+            </p>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- MUSIK -->
+
+  <section class="content" id="musik">
+
+    <div class="container">
+
+      <div class="section-tag reveal">
+        // MUSIKWUNSCH
+      </div>
+
+      <h2 class="section-title reveal">
+        Dein Song für die Party.
+      </h2>
+
+
+      <div class="music-card glass reveal">
+
+        <p>
+          Welcher Track darf auf keinen Fall fehlen?
+          Schick deinen Musikwunsch ab.
+        </p>
+
+
+        <div class="song-form">
+
+          <input
+            id="songInput"
+            type="text"
+            placeholder="Song oder Künstler eingeben..."
+          />
+
+          <button
+            class="primary-btn"
+            onclick="addSong()"
+          >
+            Absenden
+          </button>
+
+        </div>
+
+
+        <div class="wishlist" id="wishlist">
+
+          <div class="wishlist-empty">
+            Lade Musikwünsche …
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOTOS -->
+
+  <section class="content" id="fotos">
+
+    <div class="container">
+
+      <div class="section-tag reveal">
+        // FOTOS
+      </div>
+
+      <h2 class="section-title reveal">
+        Memories.
+      </h2>
+
+
+      <div class="photo-card glass reveal">
+
+        <p>
+          Halte die besten Momente fest
+          und lade deine Fotos hoch.
+        </p>
+
+        <div
+          class="upload-zone"
+          onclick="document.getElementById('fileInput').click()"
+        >
+
+          <div style="font-size:2rem">
+            ☁
+          </div>
+
+          <strong>
+            Foto hochladen
+          </strong>
+
+          <small>
+            Tippen zum Auswählen
+          </small>
+
+          <input
+            id="fileInput"
+            type="file"
+            accept="image/*"
+            hidden
+            multiple
+          />
+
+        </div>
+
+        <div class="photo-grid" id="photoGrid">
+
+          <div class="photo-empty">
+            Lade Fotos …
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- SHARE -->
+
+  <section class="content">
+
+    <div class="container">
+
+      <div class="share-card glass reveal">
+
+        <div class="section-tag">
+          // TEILEN
+        </div>
+
+        <h2 style="
+          font-size:clamp(2rem,7vw,4rem);
+          letter-spacing:-.05em;
+        ">
+          Bring your Crew.
+        </h2>
+
+        <p>
+          Teile die Party mit deinen Freunden.
+        </p>
+
+
+        <div class="qr"></div>
+
+
+        <div class="url-box">
+
+          <span id="shareUrl">
+            felix-birthday-2026.pages.dev
+          </span>
+
+          <button onclick="copyURL()">
+            ⧉
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    Made with &lt;/&gt; and ♥
+    for the best people.
+
+    <br><br>
+
+    <span>
+      let's make it legendary. 🚀
+    </span>
+
+  </footer>
+
+
+  <!-- TERMINAL -->
+
+  <div
+    class="terminal-overlay"
+    id="terminalOverlay"
+  >
+
+    <div class="terminal glass">
+
+      <div class="terminal-bar">
+
+        <div class="dots">
+          <i></i>
+          <i></i>
+          <i></i>
+        </div>
+
+        <button
+          class="close"
+          onclick="closeTerminal()"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <div
+        class="terminal-body"
+        id="terminalBody"
+      >
+
+        <div>
+          <span class="cmd">
+            felix@birthday
+          </span>:~$
+          boot party.sh
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <script>
+
+    /*
+      API CONFIG
+
+      Nach dem Deployment des Backends (siehe backend/README.md, Railway)
+      hier die eigene Backend-URL eintragen, z.B.:
+      "https://felix-birthday-backend.up.railway.app"
+    */
+
+    const API_BASE_URL = "https://DEIN-BACKEND.up.railway.app";
+
+
+    /*
+      COUNTDOWN
+    */
+
+    const birthday =
+      new Date("2026-08-15T18:00:00+02:00");
+
+
+    function countdown() {
+
+      let diff =
+        birthday.getTime() -
+        new Date().getTime();
+
+
+      if (diff < 0) {
+        diff = 0;
+      }
+
+
+      const days =
+        Math.floor(diff / 86400000);
+
+
+      const hours =
+        Math.floor(
+          (diff / 3600000) % 24
+        );
+
+
+      const minutes =
+        Math.floor(
+          (diff / 60000) % 60
+        );
+
+
+      const seconds =
+        Math.floor(
+          (diff / 1000) % 60
+        );
+
+
+      document.getElementById("days")
+        .textContent =
+        String(days).padStart(2, "0");
+
+
+      document.getElementById("hours")
+        .textContent =
+        String(hours).padStart(2, "0");
+
+
+      document.getElementById("minutes")
+        .textContent =
+        String(minutes).padStart(2, "0");
+
+
+      document.getElementById("seconds")
+        .textContent =
+        String(seconds).padStart(2, "0");
+
+    }
+
+
+    countdown();
+
+    setInterval(countdown, 1000);
+
+
+
+    /*
+      SCROLL ANIMATIONS
+    */
+
+    const observer =
+      new IntersectionObserver(
+
+        entries => {
+
+          entries.forEach(entry => {
+
+            if (
+              entry.isIntersecting
+            ) {
+
+              entry.target
+                .classList
+                .add("visible");
+
+            }
+
+          });
+
+        },
+
+        {
+          threshold: 0.12
+        }
+
+      );
+
+
+    document
+      .querySelectorAll(".reveal")
+      .forEach(element => {
+
+        observer.observe(element);
+
+      });
+
+
+
+    /*
+      MUSIC REQUESTS
+    */
+
+    const wishlistEl =
+      document.getElementById("wishlist");
+
+
+    function renderSongs(songs) {
+
+      wishlistEl.innerHTML = "";
+
+      if (!songs.length) {
+        wishlistEl.innerHTML =
+          '<div class="wishlist-empty">Noch keine Musikwünsche – sei der Erste!</div>';
+        return;
+      }
+
+      songs.forEach(song => {
+
+        const row =
+          document.createElement("div");
+
+        row.className = "song";
+
+        row.innerHTML = `
+          <span>▶ ${escapeHTML(song.text)}</span>
+          <button
+            class="song-like"
+            data-id="${song.id}"
+          >♡ ${song.likes}</button>
+        `;
+
+        row
+          .querySelector(".song-like")
+          .addEventListener("click", () => likeSong(song.id));
+
+        wishlistEl.appendChild(row);
+
+      });
+
+    }
+
+
+    async function loadSongs() {
+
+      try {
+
+        const response =
+          await fetch(`${API_BASE_URL}/api/songs`);
+
+        if (!response.ok) {
+          throw new Error("Request failed");
+        }
+
+        const songs = await response.json();
+
+        renderSongs(songs);
+
+      } catch (error) {
+
+        console.warn(
+          "Musikwünsche konnten nicht geladen werden:",
+          error
+        );
+
+        wishlistEl.innerHTML =
+          '<div class="wishlist-empty">Musikwünsche aktuell nicht erreichbar.</div>';
+
+      }
+
+    }
+
+
+    async function likeSong(id) {
+
+      try {
+
+        const response =
+          await fetch(
+            `${API_BASE_URL}/api/songs/${id}/like`,
+            { method: "POST" }
+          );
+
+        if (!response.ok) {
+          throw new Error("Request failed");
+        }
+
+        await loadSongs();
+
+      } catch (error) {
+
+        console.warn("Like konnte nicht gespeichert werden:", error);
+
+      }
+
+    }
+
+
+    async function addSong() {
+
+      const input =
+        document.getElementById(
+          "songInput"
+        );
+
+
+      const song =
+        input.value.trim();
+
+
+      if (!song) {
+        return;
+      }
+
+
+      input.disabled = true;
+
+
+      try {
+
+        const response =
+          await fetch(`${API_BASE_URL}/api/songs`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ text: song })
+          });
+
+        if (!response.ok) {
+          throw new Error("Request failed");
+        }
+
+        input.value = "";
+
+        await loadSongs();
+
+      } catch (error) {
+
+        console.warn("Song konnte nicht gespeichert werden:", error);
+
+        alert(
+          "Musikwunsch konnte nicht gespeichert werden. Bitte später erneut versuchen."
+        );
+
+      } finally {
+
+        input.disabled = false;
+
+      }
+
+    }
+
+
+    function escapeHTML(text) {
+
+      const div =
+        document.createElement("div");
+
+      div.textContent = text;
+
+      return div.innerHTML;
+
+    }
+
+
+    loadSongs();
+
+
+
+    /*
+      TERMINAL
+    */
+
+    function openTerminal() {
+
+      const overlay =
+        document.getElementById(
+          "terminalOverlay"
+        );
+
+
+      const body =
+        document.getElementById(
+          "terminalBody"
+        );
+
+
+      overlay.classList.add(
+        "active"
+      );
+
+
+      body.innerHTML = `
+        <div>
+          <span class="cmd">
+            felix@birthday
+          </span>:~$
+          boot party.sh
+        </div>
+      `;
+
+
+      const commands = [
+
+        "[OK] Loading guests...",
+
+        "[OK] Initializing music system...",
+
+        "[OK] Connecting drinks module...",
+
+        "[OK] Setting birthday_level = 18",
+
+        "[OK] Enabling party mode...",
+
+        "[OK] Memories system online.",
+
+        "",
+
+        "Felix Birthday 18.0 successfully started 🚀"
+
+      ];
+
+
+      commands.forEach(
+        (command, index) => {
+
+          setTimeout(() => {
+
+            const div =
+              document
+                .createElement("div");
+
+
+            div.textContent =
+              command || " ";
+
+
+            body.appendChild(div);
+
+          }, (index + 1) * 420);
+
+        }
+      );
+
+    }
+
+
+    function closeTerminal() {
+
+      document
+        .getElementById(
+          "terminalOverlay"
+        )
+        .classList
+        .remove("active");
+
+    }
+
+
+
+    /*
+      COPY LINK
+    */
+
+    function copyURL() {
+
+      const url =
+        document
+          .getElementById(
+            "shareUrl"
+          )
+          .textContent
+          .trim();
+
+
+      navigator.clipboard
+        .writeText(url);
+
+
+      alert(
+        "Link wurde kopiert!"
+      );
+
+    }
+
+
+
+    /*
+      PHOTOS
+    */
+
+    const photoGridEl =
+      document.getElementById("photoGrid");
+
+
+    function renderPhotos(photos) {
+
+      photoGridEl.innerHTML = "";
+
+      if (!photos.length) {
+        photoGridEl.innerHTML =
+          '<div class="photo-empty">Noch keine Fotos hochgeladen.</div>';
+        return;
+      }
+
+      photos.forEach(photo => {
+
+        const thumb =
+          document.createElement("div");
+
+        thumb.className = "photo-thumb";
+
+        thumb.innerHTML = `
+          <img
+            src="${API_BASE_URL}${photo.url}"
+            alt="Party-Foto"
+            loading="lazy"
+          />
+        `;
+
+        photoGridEl.appendChild(thumb);
+
+      });
+
+    }
+
+
+    async function loadPhotos() {
+
+      try {
+
+        const response =
+          await fetch(`${API_BASE_URL}/api/photos`);
+
+        if (!response.ok) {
+          throw new Error("Request failed");
+        }
+
+        const photos = await response.json();
+
+        renderPhotos(photos);
+
+      } catch (error) {
+
+        console.warn(
+          "Fotos konnten nicht geladen werden:",
+          error
+        );
+
+        photoGridEl.innerHTML =
+          '<div class="photo-empty">Fotos aktuell nicht erreichbar.</div>';
+
+      }
+
+    }
+
+
+    async function uploadPhotos(files) {
+
+      const formData = new FormData();
+
+      Array.from(files).forEach(file => {
+        formData.append("photos", file);
+      });
+
+
+      try {
+
+        const response =
+          await fetch(`${API_BASE_URL}/api/photos`, {
+            method: "POST",
+            body: formData
+          });
+
+        if (!response.ok) {
+          throw new Error("Request failed");
+        }
+
+        alert(files.length + " Foto(s) hochgeladen.");
+
+        await loadPhotos();
+
+      } catch (error) {
+
+        console.warn("Upload fehlgeschlagen:", error);
+
+        alert(
+          "Foto-Upload fehlgeschlagen. Bitte später erneut versuchen."
+        );
+
+      }
+
+    }
+
+
+    document
+      .getElementById(
+        "fileInput"
+      )
+      .addEventListener(
+        "change",
+
+        event => {
+
+          const files =
+            event.target.files;
+
+
+          if (files.length > 0) {
+
+            uploadPhotos(files);
+
+          }
+
+
+          event.target.value = "";
+
+        }
+
+      );
+
+
+    loadPhotos();
+
+  </script>
+
+</body>
+</html>
