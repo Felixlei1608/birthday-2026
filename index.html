@@ -1486,17 +1486,25 @@
   </div>
 
 
+  <!-- Supabase-Client (Datenbank für Musikwünsche + Foto-Storage) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
   <script>
 
     /*
-      API CONFIG
+      SUPABASE CONFIG
 
-      Nach dem Deployment des Backends (siehe backend/README.md, Railway)
-      hier die eigene Backend-URL eintragen, z.B.:
-      "https://felix-birthday-backend.up.railway.app"
+      Nach dem Anlegen des Supabase-Projekts (siehe README.md) hier die
+      Projekt-URL und den "anon public"-Key eintragen.
+      Zu finden im Supabase-Dashboard unter: Project Settings → API.
+      Der "anon" Key ist bewusst öffentlich verwendbar – der Zugriff wird
+      über Row-Level-Security-Policies in supabase/schema.sql geregelt.
     */
 
-    const API_BASE_URL = "https://DEIN-BACKEND.up.railway.app";
+    const SUPABASE_URL = "https://DEIN-PROJEKT.supabase.co";
+    const SUPABASE_ANON_KEY = "DEIN-ANON-KEY";
+
+    const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 
     /*
@@ -1659,16 +1667,18 @@
 
       try {
 
-        const response =
-          await fetch(`${API_BASE_URL}/api/songs`);
+        const { data, error } =
+          await sb
+            .from("songs")
+            .select("id, text, likes")
+            .order("likes", { ascending: false })
+            .order("created_at", { ascending: false });
 
-        if (!response.ok) {
-          throw new Error("Request failed");
+        if (error) {
+          throw error;
         }
 
-        const songs = await response.json();
-
-        renderSongs(songs);
+        renderSongs(data);
 
       } catch (error) {
 
@@ -1689,14 +1699,11 @@
 
       try {
 
-        const response =
-          await fetch(
-            `${API_BASE_URL}/api/songs/${id}/like`,
-            { method: "POST" }
-          );
+        const { error } =
+          await sb.rpc("increment_song_likes", { song_id: id });
 
-        if (!response.ok) {
-          throw new Error("Request failed");
+        if (error) {
+          throw error;
         }
 
         await loadSongs();
@@ -1732,17 +1739,13 @@
 
       try {
 
-        const response =
-          await fetch(`${API_BASE_URL}/api/songs`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ text: song })
-          });
+        const { error } =
+          await sb
+            .from("songs")
+            .insert({ text: song });
 
-        if (!response.ok) {
-          throw new Error("Request failed");
+        if (error) {
+          throw error;
         }
 
         input.value = "";
@@ -1927,7 +1930,7 @@
 
         thumb.innerHTML = `
           <img
-            src="${API_BASE_URL}${photo.url}"
+            src="${photo.url}"
             alt="Party-Foto"
             loading="lazy"
           />
@@ -1940,18 +1943,36 @@
     }
 
 
+    const PHOTOS_BUCKET = "photos";
+
+
     async function loadPhotos() {
 
       try {
 
-        const response =
-          await fetch(`${API_BASE_URL}/api/photos`);
+        const { data, error } =
+          await sb
+            .storage
+            .from(PHOTOS_BUCKET)
+            .list("", {
+              sortBy: { column: "created_at", order: "desc" }
+            });
 
-        if (!response.ok) {
-          throw new Error("Request failed");
+        if (error) {
+          throw error;
         }
 
-        const photos = await response.json();
+        const photos =
+          (data || [])
+            .filter(file => file.name !== ".emptyFolderPlaceholder")
+            .map(file => ({
+              url: sb
+                .storage
+                .from(PHOTOS_BUCKET)
+                .getPublicUrl(file.name)
+                .data
+                .publicUrl
+            }));
 
         renderPhotos(photos);
 
@@ -1972,23 +1993,28 @@
 
     async function uploadPhotos(files) {
 
-      const formData = new FormData();
-
-      Array.from(files).forEach(file => {
-        formData.append("photos", file);
-      });
-
-
       try {
 
-        const response =
-          await fetch(`${API_BASE_URL}/api/photos`, {
-            method: "POST",
-            body: formData
-          });
+        for (const file of Array.from(files)) {
 
-        if (!response.ok) {
-          throw new Error("Request failed");
+          const extension =
+            (file.name.split(".").pop() || "jpg")
+              .toLowerCase()
+              .replace(/[^a-z0-9]/g, "");
+
+          const path =
+            `${Date.now()}-${crypto.randomUUID()}.${extension}`;
+
+          const { error } =
+            await sb
+              .storage
+              .from(PHOTOS_BUCKET)
+              .upload(path, file);
+
+          if (error) {
+            throw error;
+          }
+
         }
 
         alert(files.length + " Foto(s) hochgeladen.");
