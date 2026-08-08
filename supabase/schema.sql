@@ -7,7 +7,6 @@
 --   1. Tabelle "songs" (Musikwünsche + Likes) inkl. RLS-Policies
 --   2. Sichere RPC-Funktion zum Erhöhen der Likes (kein offenes UPDATE nötig)
 --   3. Seed-Daten (die ursprünglichen 3 Beispiel-Songs)
---   4. Storage-Bucket "photos" (öffentlich) inkl. Policies für Upload/Lesen
 
 
 /* ---------- SONGS ---------- */
@@ -55,22 +54,3 @@ select * from (
     ('The Business', 7)
 ) as seed(text, likes)
 where not exists (select 1 from public.songs);
-
-
-/* ---------- FOTOS (Storage) ---------- */
-
-insert into storage.buckets (id, name, public)
-values ('photos', 'photos', true)
-on conflict (id) do nothing;
-
-drop policy if exists "Fotos sind oeffentlich sichtbar" on storage.objects;
-create policy "Fotos sind oeffentlich sichtbar"
-  on storage.objects for select
-  to anon
-  using (bucket_id = 'photos');
-
-drop policy if exists "Jeder darf Fotos hochladen" on storage.objects;
-create policy "Jeder darf Fotos hochladen"
-  on storage.objects for insert
-  to anon
-  with check (bucket_id = 'photos');
