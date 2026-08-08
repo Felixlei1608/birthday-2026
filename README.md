@@ -7,8 +7,8 @@ Felix 18. Geburtstag – Party-Webseite.
 - **Datenbank**: [Supabase](https://supabase.com) – eine kostenlose,
   gehostete Postgres-Datenbank mit fertiger REST-API. Der Browser spricht
   direkt (über den `supabase-js`-Client) mit Supabase, ganz ohne eigenen
-  Backend-Code. Speichert Musikwünsche (inkl. Likes) dauerhaft, statt nur
-  im Browser der jeweiligen Besucher:in.
+  Backend-Code. Speichert Musikwünsche (inkl. Likes) und hochgeladene Fotos
+  dauerhaft, statt nur im Browser der jeweiligen Besucher:in.
 
 ## Setup in 4 Schritten
 
@@ -22,8 +22,9 @@ Felix 18. Geburtstag – Party-Webseite.
    - Im Projekt-Dashboard: **SQL Editor** → **New query**.
    - Inhalt von [`supabase/schema.sql`](supabase/schema.sql) hineinkopieren
      und mit **Run** ausführen.
-   - Das legt die Tabelle für Musikwünsche und die Zugriffsregeln (Row
-     Level Security) an, inkl. der ursprünglichen 3 Beispiel-Songs.
+   - Das legt die Tabelle für Musikwünsche, die Zugriffsregeln (Row Level
+     Security) und einen öffentlichen Storage-Bucket `photos` für die
+     Foto-Uploads an.
 
 3. **Zugangsdaten eintragen**
    - Im Dashboard: **Project Settings → API**.
@@ -46,10 +47,12 @@ Felix 18. Geburtstag – Party-Webseite.
 
 - Musikwünsche werden in Supabase (Postgres) gespeichert und sind für alle
   Besucher:innen sichtbar (inkl. Like-Zähler, der wirklich persistiert wird).
+- Fotos werden beim Hochladen in einen Supabase-Storage-Bucket geschickt und
+  unterhalb der Upload-Fläche als Galerie angezeigt (vorher passierte mit
+  hochgeladenen Fotos nichts – es gab nur eine Bestätigung).
 - Sind `SUPABASE_URL`/`SUPABASE_ANON_KEY` noch nicht gesetzt oder Supabase
   nicht erreichbar, zeigt die Seite einen dezenten Hinweis statt kaputt zu
   wirken – Design und restliche Funktionen bleiben unverändert.
-- Die Foto-Upload-Funktion wurde komplett entfernt.
 
 ## Hinweise zum Supabase-Free-Tier
 
@@ -58,5 +61,5 @@ Felix 18. Geburtstag – Party-Webseite.
 - Ein kostenloses Projekt pausiert nach ca. 1 Woche Inaktivität automatisch;
   es reaktiviert sich von selbst, sobald wieder ein Aufruf kommt (kann beim
   ersten Request nach längerer Pause ein paar Sekunden dauern).
-- Limit (Stand heute): 500 MB Datenbank – für Musikwünsche mehr als
-  ausreichend.
+- Limits (Stand heute): 500 MB Datenbank, 1 GB Storage – für eine Party-Seite
+  mehr als ausreichend.
