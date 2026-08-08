@@ -301,7 +301,7 @@
     .quick-nav {
       margin-top: 20px;
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 10px;
     }
 
@@ -492,14 +492,12 @@
     /* MUSIC */
 
     .music-card,
-    .photo-card,
     .share-card {
       border-radius: 24px;
       padding: 28px;
     }
 
     .music-card p,
-    .photo-card p,
     .share-card p {
       color: var(--muted);
       line-height: 1.6;
@@ -581,60 +579,11 @@
       opacity: .6;
     }
 
-    .wishlist-empty,
-    .photo-empty {
+    .wishlist-empty {
       padding: 16px;
       color: var(--muted);
       font-size: .8rem;
       text-align: center;
-    }
-
-    /* PHOTOS */
-
-    .upload-zone {
-      margin-top: 20px;
-      border-radius: 18px;
-      padding: 35px 20px;
-      border: 1px dashed rgba(180,195,220,.3);
-      text-align: center;
-      cursor: pointer;
-      transition: .25s;
-    }
-
-    .upload-zone:hover {
-      background: rgba(255,255,255,.035);
-      border-color: #7fa7ff;
-    }
-
-    .upload-zone strong {
-      display: block;
-      margin-top: 10px;
-    }
-
-    .upload-zone small {
-      color: var(--muted);
-    }
-
-    .photo-grid {
-      margin-top: 20px;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-      gap: 10px;
-    }
-
-    .photo-thumb {
-      aspect-ratio: 1;
-      border-radius: 14px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.03);
-    }
-
-    .photo-thumb img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
     }
 
     /* SHARE */
@@ -820,7 +769,7 @@
       }
 
       .quick-nav {
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(4, 1fr);
         gap: 7px;
       }
 
@@ -874,7 +823,6 @@
       <a href="#info">Info</a>
       <a href="#ablauf">Ablauf</a>
       <a href="#musik">Musik</a>
-      <a href="#fotos">Fotos</a>
     </div>
 
     <div class="date-pill">
@@ -962,11 +910,6 @@
           <a href="#musik" class="quick-button">
             <div class="quick-icon">♫</div>
             <div class="quick-label">Musik</div>
-          </a>
-
-          <a href="#fotos" class="quick-button">
-            <div class="quick-icon">▧</div>
-            <div class="quick-label">Fotos</div>
           </a>
 
           <button onclick="openTerminal()" class="quick-button">
@@ -1314,70 +1257,6 @@
   </section>
 
 
-  <!-- FOTOS -->
-
-  <section class="content" id="fotos">
-
-    <div class="container">
-
-      <div class="section-tag reveal">
-        // FOTOS
-      </div>
-
-      <h2 class="section-title reveal">
-        Memories.
-      </h2>
-
-
-      <div class="photo-card glass reveal">
-
-        <p>
-          Halte die besten Momente fest
-          und lade deine Fotos hoch.
-        </p>
-
-        <div
-          class="upload-zone"
-          onclick="document.getElementById('fileInput').click()"
-        >
-
-          <div style="font-size:2rem">
-            ☁
-          </div>
-
-          <strong>
-            Foto hochladen
-          </strong>
-
-          <small>
-            Tippen zum Auswählen
-          </small>
-
-          <input
-            id="fileInput"
-            type="file"
-            accept="image/*"
-            hidden
-            multiple
-          />
-
-        </div>
-
-        <div class="photo-grid" id="photoGrid">
-
-          <div class="photo-empty">
-            Lade Fotos …
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
   <!-- SHARE -->
 
   <section class="content">
@@ -1486,17 +1365,25 @@
   </div>
 
 
+  <!-- Supabase-Client (Datenbank für Musikwünsche) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
   <script>
 
     /*
-      API CONFIG
+      SUPABASE CONFIG
 
-      Nach dem Deployment des Backends (siehe backend/README.md, Railway)
-      hier die eigene Backend-URL eintragen, z.B.:
-      "https://felix-birthday-backend.up.railway.app"
+      Nach dem Anlegen des Supabase-Projekts (siehe README.md) hier die
+      Projekt-URL und den "anon public"-Key eintragen.
+      Zu finden im Supabase-Dashboard unter: Project Settings → API.
+      Der "anon" Key ist bewusst öffentlich verwendbar – der Zugriff wird
+      über Row-Level-Security-Policies in supabase/schema.sql geregelt.
     */
 
-    const API_BASE_URL = "https://DEIN-BACKEND.up.railway.app";
+    const SUPABASE_URL = "https://jgxyurippcrydxtmehyw.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpneHl1cmlwcGNyeWR4dG1laHl3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODYyMjUwNjcsImV4cCI6MjEwMTgwMTA2N30.v4FVkWz6uvyzs4pAxnOxx8VcqUUTeY6Iy7NdPaX_Mr4";
+
+    const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 
     /*
@@ -1659,16 +1546,18 @@
 
       try {
 
-        const response =
-          await fetch(`${API_BASE_URL}/api/songs`);
+        const { data, error } =
+          await sb
+            .from("songs")
+            .select("id, text, likes")
+            .order("likes", { ascending: false })
+            .order("created_at", { ascending: false });
 
-        if (!response.ok) {
-          throw new Error("Request failed");
+        if (error) {
+          throw error;
         }
 
-        const songs = await response.json();
-
-        renderSongs(songs);
+        renderSongs(data);
 
       } catch (error) {
 
@@ -1689,14 +1578,11 @@
 
       try {
 
-        const response =
-          await fetch(
-            `${API_BASE_URL}/api/songs/${id}/like`,
-            { method: "POST" }
-          );
+        const { error } =
+          await sb.rpc("increment_song_likes", { song_id: id });
 
-        if (!response.ok) {
-          throw new Error("Request failed");
+        if (error) {
+          throw error;
         }
 
         await loadSongs();
@@ -1732,17 +1618,13 @@
 
       try {
 
-        const response =
-          await fetch(`${API_BASE_URL}/api/songs`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ text: song })
-          });
+        const { error } =
+          await sb
+            .from("songs")
+            .insert({ text: song });
 
-        if (!response.ok) {
-          throw new Error("Request failed");
+        if (error) {
+          throw error;
         }
 
         input.value = "";
@@ -1899,143 +1781,6 @@
     }
 
 
-
-    /*
-      PHOTOS
-    */
-
-    const photoGridEl =
-      document.getElementById("photoGrid");
-
-
-    function renderPhotos(photos) {
-
-      photoGridEl.innerHTML = "";
-
-      if (!photos.length) {
-        photoGridEl.innerHTML =
-          '<div class="photo-empty">Noch keine Fotos hochgeladen.</div>';
-        return;
-      }
-
-      photos.forEach(photo => {
-
-        const thumb =
-          document.createElement("div");
-
-        thumb.className = "photo-thumb";
-
-        thumb.innerHTML = `
-          <img
-            src="${API_BASE_URL}${photo.url}"
-            alt="Party-Foto"
-            loading="lazy"
-          />
-        `;
-
-        photoGridEl.appendChild(thumb);
-
-      });
-
-    }
-
-
-    async function loadPhotos() {
-
-      try {
-
-        const response =
-          await fetch(`${API_BASE_URL}/api/photos`);
-
-        if (!response.ok) {
-          throw new Error("Request failed");
-        }
-
-        const photos = await response.json();
-
-        renderPhotos(photos);
-
-      } catch (error) {
-
-        console.warn(
-          "Fotos konnten nicht geladen werden:",
-          error
-        );
-
-        photoGridEl.innerHTML =
-          '<div class="photo-empty">Fotos aktuell nicht erreichbar.</div>';
-
-      }
-
-    }
-
-
-    async function uploadPhotos(files) {
-
-      const formData = new FormData();
-
-      Array.from(files).forEach(file => {
-        formData.append("photos", file);
-      });
-
-
-      try {
-
-        const response =
-          await fetch(`${API_BASE_URL}/api/photos`, {
-            method: "POST",
-            body: formData
-          });
-
-        if (!response.ok) {
-          throw new Error("Request failed");
-        }
-
-        alert(files.length + " Foto(s) hochgeladen.");
-
-        await loadPhotos();
-
-      } catch (error) {
-
-        console.warn("Upload fehlgeschlagen:", error);
-
-        alert(
-          "Foto-Upload fehlgeschlagen. Bitte später erneut versuchen."
-        );
-
-      }
-
-    }
-
-
-    document
-      .getElementById(
-        "fileInput"
-      )
-      .addEventListener(
-        "change",
-
-        event => {
-
-          const files =
-            event.target.files;
-
-
-          if (files.length > 0) {
-
-            uploadPhotos(files);
-
-          }
-
-
-          event.target.value = "";
-
-        }
-
-      );
-
-
-    loadPhotos();
 
   </script>
 
