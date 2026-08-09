@@ -1888,6 +1888,39 @@
         rgba(0,0,0,.4);
     }
 
+    .song-detail-cover::after {
+      content: "";
+
+      position: absolute;
+
+      inset: 0;
+
+      background:
+        linear-gradient(
+          180deg,
+          transparent 40%,
+          rgba(3,5,10,.85) 100%
+        );
+
+      pointer-events: none;
+    }
+
+    .song-detail-cover-image {
+      position: absolute;
+
+      inset: 0;
+
+      width: 100%;
+
+      height: 100%;
+
+      object-fit: cover;
+    }
+
+    .song-detail-cover-image[hidden] {
+      display: none;
+    }
+
     .song-detail-cover-glow {
       width: 200px;
 
@@ -1924,6 +1957,11 @@
         rgba(255,255,255,.5);
 
       font-family: monospace;
+
+      text-shadow:
+        0 2px 8px rgba(0,0,0,.6);
+
+      z-index: 1;
     }
 
     .song-detail-cover-title {
@@ -1936,6 +1974,11 @@
       font-weight: 800;
 
       letter-spacing: -.04em;
+
+      text-shadow:
+        0 2px 8px rgba(0,0,0,.6);
+
+      z-index: 1;
     }
 
     .song-detail-label,
@@ -3287,7 +3330,18 @@
 
         <div class="song-detail-cover">
 
-          <div class="song-detail-cover-glow">
+          <img
+            class="song-detail-cover-image"
+            id="songDetailCoverImage"
+            src=""
+            alt=""
+            hidden
+          />
+
+          <div
+            class="song-detail-cover-glow"
+            id="songDetailCoverGlow"
+          >
           </div>
 
 
@@ -3669,126 +3723,6 @@
 
 
     const concertSongs = [
-
-
-      {
-        title:
-          "Der erste Song",
-
-        artist:
-          "KirchholzlerRocker",
-
-        duration:
-          "03:42",
-
-        description:
-          "Der Opening-Track des Geburtstagskonzerts. Der Song eröffnet den Abend und startet offiziell den Live-Part von Felix Birthday 18.0.",
-
-        lyrics:
-`Strophe 1
-
-Hier kommt später dein Songtext hin.
-Du kannst den kompletten Text
-direkt in diesem Bereich eintragen.
-
-Refrain
-
-Das ist der Refrain des Songs.
-Er wird nach einem Klick auf
-„Song ansehen“ angezeigt.
-
-Strophe 2
-
-Hier kannst du beliebig viele
-weitere Zeilen hinzufügen.`
-      },
-
-
-      {
-        title:
-          "18 Jahre",
-
-        artist:
-          "KirchholzlerRocker",
-
-        duration:
-          "04:08",
-
-        description:
-          "Ein Song über 18 Jahre voller Geschichten, Erinnerungen, Freunde und die Momente, die Felix bis heute begleitet haben.",
-
-        lyrics:
-`Strophe 1
-
-Achtzehn Joa san jetzt vorbei,
-so vü erlebt und trotzdem frei.
-
-Von früher bis zum heutigen Tog,
-ois dabei, wos i so mog.
-
-Refrain
-
-18 Jahre – heute feiern wir,
-alle meine Freunde san heut hier.
-
-Und wenn die Nocht niemals vergeht,
-wissen wir, dass diese Erinnerung bleibt.`
-      },
-
-
-      {
-        title:
-          "Legendary Night",
-
-        artist:
-          "KirchholzlerRocker",
-
-        duration:
-          "03:31",
-
-        description:
-          "Der Party-Track des Abends. Laut, energiegeladen und gemacht für den Moment, wenn aus dem Konzert endgültig eine Party wird.",
-
-        lyrics:
-`Tonight we make it legendary,
-lights are shining everywhere.
-
-Everybody here together,
-this is one night we will share.
-
-We don't need tomorrow,
-we are living here tonight.
-
-Felix eighteen,
-everything feels right.`
-      },
-
-
-      {
-        title:
-          "Bis zum Morgen",
-
-        artist:
-          "KirchholzlerRocker",
-
-        duration:
-          "04:22",
-
-        description:
-          "Der Abschluss des Konzerts und gleichzeitig der Übergang in die Afterparty.",
-
-        lyrics:
-`Bis zum Morgen bleib ma do,
-keiner denkt ans Hamgeh no.
-
-Musik laut und Lichter an,
-weil die Nacht erst starten kann.
-
-Und irgendwann geht d'Sunn wieder auf,
-doch bis dahin hör ma niemals auf.`
-      },
-
-
       {
         title:
           "Summer Vibes",
@@ -3801,6 +3735,9 @@ doch bis dahin hör ma niemals auf.`
 
         year:
           "2023",
+
+        cover:
+          "img/summer_vibes.png",
 
         description:
           "Ein sonniger Sommer-Track über Strandpartys, Freundschaft und endlose Sommernächte.",
@@ -3858,6 +3795,9 @@ living in the moments`
 
         year:
           "2025",
+
+        cover:
+          "img/echte_freundschaft.png",
 
         description:
           "Ein Song über echte Freundschaft und Erinnerungen, die seit dem Kindergarten halten.",
@@ -3970,6 +3910,9 @@ so schnell vergeht`
         year:
           "2026",
 
+        cover:
+          "img/stack_overflow_of_my_heart.png",
+
         description:
           "Eine augenzwinkernde Liebeserklärung in der Sprache eines Programmierers.",
 
@@ -4055,6 +3998,9 @@ Since you logged out of my heart`
 
         year:
           "2026",
+
+        cover:
+          "img/Eighteen_Candles_for_Zuckerschaumpferdchen.png",
 
         description:
           "Ein mehrsprachiges Geburtstagsständchen, gewidmet einem ganz besonderen Menschen.",
@@ -4153,6 +4099,9 @@ On va chanter, on va fêter`
         year:
           "2025",
 
+        cover:
+          "img/drei_freind.png",
+
         description:
           "Ein Austropop-Song über eine gemeinsame Nacht mit den besten Freunden.",
 
@@ -4232,6 +4181,9 @@ drei Freind`
 
         year:
           "2025",
+
+        cover:
+          "img/dancing_in_the_rain.png",
 
         description:
           "Ein energiegeladener Track übers Tanzen im Regen und die Nacht durchzumachen.",
@@ -4669,16 +4621,25 @@ Let the music guide us through these summer afternoons`
             "concert-slide";
 
 
+          const cardCoverStyle =
+            song.cover
+              ? `style="background-image: url('${song.cover}'); background-size: cover; background-position: center;"`
+              : "";
+
+
           slide.innerHTML = `
 
             <article
               class="concert-song-card"
+              ${cardCoverStyle}
             >
 
+              ${song.cover ? "" : `
               <div
                 class="concert-card-orb"
               >
               </div>
+              `}
 
 
               <div
@@ -5106,6 +5067,32 @@ Let the music guide us through these summer afternoons`
         )
         .textContent =
         song.title;
+
+
+      const coverImage =
+        document.getElementById(
+          "songDetailCoverImage"
+        );
+
+      const coverGlow =
+        document.getElementById(
+          "songDetailCoverGlow"
+        );
+
+      if (song.cover) {
+
+        coverImage.src = song.cover;
+        coverImage.alt = song.title;
+        coverImage.hidden = false;
+        coverGlow.style.display = "none";
+
+      } else {
+
+        coverImage.hidden = true;
+        coverImage.src = "";
+        coverGlow.style.display = "";
+
+      }
 
 
       document
