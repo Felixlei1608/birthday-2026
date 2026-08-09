@@ -628,6 +628,13 @@
       overflow: hidden;
       border: 1px solid var(--border);
       background: rgba(255,255,255,.03);
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .photo-thumb:hover {
+      border-color: rgba(100,160,255,.45);
+      transform: translateY(-3px);
     }
 
     .photo-thumb img {
@@ -784,6 +791,61 @@
 
     .terminal-body .cmd {
       color: var(--green);
+    }
+
+    /* LIGHTBOX */
+
+    .lightbox-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 600;
+      background: rgba(0,0,0,.85);
+      backdrop-filter: blur(14px);
+      display: none;
+      place-items: center;
+      padding: 20px;
+    }
+
+    .lightbox-overlay.active {
+      display: grid;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 18px;
+      right: 22px;
+    }
+
+    .lightbox-content {
+      width: min(900px, 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .lightbox-content img {
+      max-width: 100%;
+      max-height: 72vh;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .lightbox-download {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 22px;
+      background: rgba(255,255,255,.06);
+      color: white;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: .85rem;
+      transition: .2s;
+    }
+
+    .lightbox-download:hover {
+      background: rgba(255,255,255,.12);
     }
 
     /* REVEAL */
@@ -1486,6 +1548,40 @@
   </div>
 
 
+  <!-- LIGHTBOX -->
+
+  <div
+    class="lightbox-overlay"
+    id="lightboxOverlay"
+  >
+
+    <button
+      class="close lightbox-close"
+      onclick="closeLightbox()"
+    >
+      ×
+    </button>
+
+    <div class="lightbox-content">
+
+      <img
+        id="lightboxImage"
+        src=""
+        alt="Party-Foto"
+      />
+
+      <button
+        class="lightbox-download"
+        onclick="downloadCurrentPhoto()"
+      >
+        ⬇ Foto herunterladen
+      </button>
+
+    </div>
+
+  </div>
+
+
   <!-- Supabase-Client (Datenbank für Musikwünsche + Foto-Storage) -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -1936,6 +2032,10 @@
           />
         `;
 
+        thumb.addEventListener("click", () => {
+          openLightbox(photo.url, photo.name);
+        });
+
         photoGridEl.appendChild(thumb);
 
       });
@@ -1966,6 +2066,7 @@
           (data || [])
             .filter(file => file.name !== ".emptyFolderPlaceholder")
             .map(file => ({
+              name: file.name,
               url: sb
                 .storage
                 .from(PHOTOS_BUCKET)
@@ -1985,6 +2086,95 @@
 
         photoGridEl.innerHTML =
           '<div class="photo-empty">Fotos aktuell nicht erreichbar.</div>';
+
+      }
+
+    }
+
+
+    /*
+      LIGHTBOX / DOWNLOAD
+    */
+
+    let currentPhoto = null;
+
+
+    function openLightbox(url, name) {
+
+      currentPhoto = { url, name };
+
+      document
+        .getElementById("lightboxImage")
+        .src = url;
+
+      document
+        .getElementById("lightboxOverlay")
+        .classList
+        .add("active");
+
+    }
+
+
+    function closeLightbox() {
+
+      document
+        .getElementById("lightboxOverlay")
+        .classList
+        .remove("active");
+
+      document
+        .getElementById("lightboxImage")
+        .src = "";
+
+      currentPhoto = null;
+
+    }
+
+
+    async function downloadCurrentPhoto() {
+
+      if (!currentPhoto) {
+        return;
+      }
+
+      try {
+
+        const response =
+          await fetch(currentPhoto.url);
+
+        if (!response.ok) {
+          throw new Error("Request failed");
+        }
+
+        const blob =
+          await response.blob();
+
+        const blobUrl =
+          URL.createObjectURL(blob);
+
+        const link =
+          document.createElement("a");
+
+        link.href = blobUrl;
+        link.download =
+          currentPhoto.name || "party-foto.jpg";
+
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+
+        URL.revokeObjectURL(blobUrl);
+
+      } catch (error) {
+
+        console.warn(
+          "Download fehlgeschlagen, öffne Foto stattdessen:",
+          error
+        );
+
+        // Fallback: Foto in neuem Tab öffnen, dort per
+        // Rechtsklick → "Bild speichern unter" möglich.
+        window.open(currentPhoto.url, "_blank");
 
       }
 
@@ -2062,6 +2252,26 @@
 
 
     loadPhotos();
+
+
+    // Lightbox per Klick auf den Hintergrund oder Escape schließen
+    document
+      .getElementById("lightboxOverlay")
+      .addEventListener("click", event => {
+
+        if (event.target.id === "lightboxOverlay") {
+          closeLightbox();
+        }
+
+      });
+
+    document.addEventListener("keydown", event => {
+
+      if (event.key === "Escape") {
+        closeLightbox();
+      }
+
+    });
 
   </script>
 
