@@ -655,36 +655,16 @@
       height: 190px;
       margin: 25px auto;
       border-radius: 18px;
-      background:
-        repeating-linear-gradient(
-          45deg,
-          #fff 0 8px,
-          #131827 8px 16px
-        );
+      background: white;
       border: 12px solid white;
       box-shadow: 0 20px 50px rgba(0,0,0,.4);
-      position: relative;
       overflow: hidden;
     }
 
-    .qr::before,
-    .qr::after {
-      content: "";
-      position: absolute;
-      width: 45px;
-      height: 45px;
-      border: 10px solid #111827;
-      background: white;
-    }
-
-    .qr::before {
-      top: 5px;
-      left: 5px;
-    }
-
-    .qr::after {
-      right: 5px;
-      bottom: 5px;
+    .qr img {
+      width: 100%;
+      height: 100%;
+      display: block;
     }
 
     .url-box {
@@ -1464,13 +1444,21 @@
         </p>
 
 
-        <div class="qr"></div>
+        <div class="qr">
+          <img
+            src="https://api.qrserver.com/v1/create-qr-code/?size=340x340&data=https%3A%2F%2Ffelixlei1608.github.io%2Fbirthday-2026%2F"
+            alt="QR-Code zur Party-Webseite"
+            width="340"
+            height="340"
+            loading="lazy"
+          />
+        </div>
 
 
         <div class="url-box">
 
           <span id="shareUrl">
-            felix-birthday-2026.pages.dev
+            felixlei1608.github.io/birthday-2026
           </span>
 
           <button onclick="copyURL()">
