@@ -39,11 +39,26 @@
 
     body {
       margin: 0;
+
       background:
-        radial-gradient(circle at 50% -10%, rgba(80,110,255,.20), transparent 35%),
-        radial-gradient(circle at 85% 25%, rgba(140,76,255,.12), transparent 30%),
-        linear-gradient(180deg, #05070c, #03050a);
+        radial-gradient(
+          circle at 50% -10%,
+          rgba(80,110,255,.20),
+          transparent 35%
+        ),
+        radial-gradient(
+          circle at 85% 25%,
+          rgba(140,76,255,.12),
+          transparent 30%
+        ),
+        linear-gradient(
+          180deg,
+          #05070c,
+          #03050a
+        );
+
       color: var(--text);
+
       font-family:
         -apple-system,
         BlinkMacSystemFont,
@@ -51,17 +66,23 @@
         "Segoe UI",
         Arial,
         sans-serif;
+
       overflow-x: hidden;
     }
 
     body::before {
       content: "";
+
       position: fixed;
       inset: 0;
+
       pointer-events: none;
+
       opacity: .04;
+
       background-image:
         url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.7'/%3E%3C/svg%3E");
+
       z-index: 999;
     }
 
@@ -82,9 +103,12 @@
           rgba(255,255,255,.08),
           rgba(255,255,255,.025)
         );
+
       border: 1px solid var(--border);
+
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
+
       box-shadow:
         inset 0 1px 0 rgba(255,255,255,.07),
         var(--shadow);
@@ -95,20 +119,30 @@
       margin: auto;
     }
 
-    /* NAV */
+
+    /* ================================
+       NAVIGATION
+    ================================= */
 
     .nav {
       position: fixed;
+
       top: 14px;
       left: 50%;
+
       transform: translateX(-50%);
+
       width: min(1050px, calc(100% - 26px));
       height: 60px;
+
       border-radius: 20px;
+
       z-index: 100;
+
       display: flex;
       align-items: center;
       justify-content: space-between;
+
       padding: 0 18px;
     }
 
@@ -125,8 +159,14 @@
     .desktop-nav {
       display: flex;
       gap: 26px;
+
       font-size: .84rem;
+
       color: var(--muted);
+    }
+
+    .desktop-nav a {
+      transition: .2s;
     }
 
     .desktop-nav a:hover {
@@ -135,18 +175,29 @@
 
     .date-pill {
       padding: 8px 12px;
+
       border-radius: 999px;
-      background: rgba(255,255,255,.05);
-      border: 1px solid var(--border);
+
+      background:
+        rgba(255,255,255,.05);
+
+      border:
+        1px solid var(--border);
+
       font-size: .78rem;
     }
 
-    /* HERO */
+
+    /* ================================
+       HERO
+    ================================= */
 
     .hero {
       min-height: 100svh;
+
       padding-top: 130px;
       padding-bottom: 80px;
+
       display: flex;
       align-items: center;
     }
@@ -157,19 +208,27 @@
 
     .access-card {
       border-radius: 26px;
+
       padding: 28px;
+
       position: relative;
+
       overflow: hidden;
     }
 
     .access-card::after {
       content: "";
+
       position: absolute;
+
       left: -10%;
       right: -10%;
       bottom: -100px;
+
       height: 220px;
+
       border-radius: 50%;
+
       background:
         radial-gradient(
           ellipse at center,
@@ -177,7 +236,9 @@
           rgba(46,86,255,.15) 35%,
           transparent 67%
         );
+
       filter: blur(8px);
+
       pointer-events: none;
     }
 
@@ -185,33 +246,49 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+
       color: var(--muted);
+
       font-family: monospace;
+
       font-size: .72rem;
+
       margin-bottom: 40px;
     }
 
     .status {
       display: flex;
       align-items: center;
+
       gap: 8px;
     }
 
     .status-dot {
       width: 7px;
       height: 7px;
+
       border-radius: 50%;
+
       background: var(--green);
-      box-shadow: 0 0 14px var(--green);
+
+      box-shadow:
+        0 0 14px var(--green);
     }
 
     .hero-title {
       margin: 0;
-      font-size: clamp(3.8rem, 13vw, 8rem);
+
+      font-size:
+        clamp(3.8rem, 13vw, 8rem);
+
       letter-spacing: -.075em;
+
       line-height: .9;
+
       font-weight: 850;
+
       position: relative;
+
       z-index: 2;
     }
 
@@ -223,58 +300,95 @@
           #a0b8ff 45%,
           #8e4dff 80%
         );
+
       -webkit-background-clip: text;
+      background-clip: text;
+
       color: transparent;
     }
 
     .birthday-text {
       margin-top: 18px;
+
       letter-spacing: .45em;
+
       font-size: .8rem;
+
       color: #b9caef;
+
       text-transform: uppercase;
     }
 
     .hero-description {
       max-width: 620px;
+
       color: var(--muted);
+
       margin-top: 28px;
+
       line-height: 1.7;
+
       position: relative;
+
       z-index: 2;
     }
 
     .event-date {
       display: inline-flex;
       align-items: center;
+
       gap: 10px;
+
       margin-top: 20px;
+
       padding: 11px 16px;
+
       border-radius: 999px;
-      background: rgba(255,255,255,.045);
-      border: 1px solid var(--border);
+
+      background:
+        rgba(255,255,255,.045);
+
+      border:
+        1px solid var(--border);
+
       font-family: monospace;
+
       font-size: .82rem;
+
       position: relative;
+
       z-index: 2;
     }
 
-    /* COUNTDOWN */
+
+    /* ================================
+       COUNTDOWN
+    ================================= */
 
     .countdown {
       margin-top: 32px;
+
       border-radius: 22px;
+
       overflow: hidden;
+
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+
+      grid-template-columns:
+        repeat(4, 1fr);
+
       position: relative;
+
       z-index: 2;
     }
 
     .count-box {
       text-align: center;
+
       padding: 22px 10px;
-      border-right: 1px solid var(--border);
+
+      border-right:
+        1px solid var(--border);
     }
 
     .count-box:last-child {
@@ -283,57 +397,92 @@
 
     .count-number {
       display: block;
+
       font-family: monospace;
-      font-size: clamp(1.5rem, 6vw, 2.7rem);
+
+      font-size:
+        clamp(1.5rem, 6vw, 2.7rem);
+
       letter-spacing: -.06em;
     }
 
     .count-label {
       color: var(--muted);
+
       font-size: .65rem;
+
       text-transform: uppercase;
+
       letter-spacing: .08em;
+
       margin-top: 6px;
     }
 
-    /* QUICK NAV */
+
+    /* ================================
+       QUICK NAVIGATION
+    ================================= */
 
     .quick-nav {
       margin-top: 20px;
+
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+
+      grid-template-columns:
+        repeat(6, 1fr);
+
       gap: 10px;
     }
 
     .quick-button {
-      border: 1px solid var(--border);
+      border:
+        1px solid var(--border);
+
       border-radius: 16px;
+
       padding: 15px 8px;
-      background: rgba(255,255,255,.035);
+
+      background:
+        rgba(255,255,255,.035);
+
       color: white;
+
       cursor: pointer;
+
       text-align: center;
+
       transition: .25s;
     }
 
     .quick-button:hover {
-      transform: translateY(-4px);
-      border-color: rgba(100,160,255,.45);
-      background: rgba(80,110,255,.09);
+      transform:
+        translateY(-4px);
+
+      border-color:
+        rgba(100,160,255,.45);
+
+      background:
+        rgba(80,110,255,.09);
     }
 
     .quick-icon {
       font-size: 1.2rem;
+
       margin-bottom: 8px;
+
       color: #8db7ff;
     }
 
     .quick-label {
       font-size: .62rem;
+
       text-transform: uppercase;
     }
 
-    /* SECTIONS */
+
+    /* ================================
+       GENERAL SECTIONS
+    ================================= */
 
     section.content {
       padding: 95px 0;
@@ -341,71 +490,109 @@
 
     .section-tag {
       color: #77a8ff;
+
       font-family: monospace;
+
       font-size: .74rem;
+
       letter-spacing: .09em;
+
       margin-bottom: 12px;
     }
 
     .section-title {
-      font-size: clamp(2.1rem, 8vw, 4.6rem);
+      font-size:
+        clamp(2.1rem, 8vw, 4.6rem);
+
       letter-spacing: -.055em;
+
       margin: 0 0 35px;
     }
 
-    /* INFO */
+
+    /* ================================
+       INFO
+    ================================= */
 
     .info-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
       gap: 15px;
     }
 
     .info-card {
       border-radius: 20px;
+
       padding: 22px;
+
       display: flex;
+
       gap: 18px;
+
       align-items: flex-start;
     }
 
     .icon-box {
       min-width: 48px;
       height: 48px;
+
       border-radius: 16px;
-      background: rgba(130,80,255,.11);
-      border: 1px solid rgba(140,80,255,.18);
+
+      background:
+        rgba(130,80,255,.11);
+
+      border:
+        1px solid rgba(140,80,255,.18);
+
       display: grid;
+
       place-items: center;
+
       font-size: 1.35rem;
     }
 
     .info-label {
       font-size: .67rem;
+
       text-transform: uppercase;
+
       color: var(--muted);
+
       letter-spacing: .08em;
     }
 
     .info-value {
       margin-top: 6px;
+
       font-size: 1.04rem;
+
       font-weight: 700;
     }
 
     .info-small {
       color: var(--muted);
+
       font-size: .78rem;
+
       margin-top: 8px;
+
       line-height: 1.5;
     }
 
     .code-message {
       margin-top: 18px;
+
       border-radius: 20px;
+
       padding: 24px;
+
       font-family: monospace;
+
       line-height: 1.7;
+
       color: #aab5cb;
     }
 
@@ -417,33 +604,45 @@
       color: var(--green);
     }
 
-    /* TIMELINE */
+
+    /* ================================
+       TIMELINE
+    ================================= */
 
     .timeline {
       position: relative;
+
       border-radius: 24px;
+
       padding: 28px;
     }
 
     .timeline::before {
       content: "";
+
       position: absolute;
+
       left: 38px;
       top: 45px;
       bottom: 45px;
+
       width: 1px;
+
       background:
         linear-gradient(
           var(--cyan),
           var(--purple),
           #ffba4d
         );
+
       opacity: .5;
     }
 
     .timeline-item {
       position: relative;
+
       padding-left: 48px;
+
       margin-bottom: 18px;
     }
 
@@ -453,48 +652,627 @@
 
     .timeline-dot {
       position: absolute;
+
       left: 4px;
       top: 22px;
+
       width: 12px;
       height: 12px;
+
       border-radius: 50%;
+
       background: white;
-      border: 3px solid var(--cyan);
-      box-shadow: 0 0 18px var(--cyan);
+
+      border:
+        3px solid var(--cyan);
+
+      box-shadow:
+        0 0 18px var(--cyan);
     }
 
     .timeline-card {
       padding: 20px;
+
       border-radius: 18px;
-      background: rgba(255,255,255,.035);
-      border: 1px solid var(--border);
+
+      background:
+        rgba(255,255,255,.035);
+
+      border:
+        1px solid var(--border);
     }
 
     .timeline-time {
       font-family: monospace;
+
       font-size: .72rem;
+
       color: #c5cce0;
+
       margin-bottom: 8px;
     }
 
     .timeline-card h3 {
       margin: 0 0 8px;
+
       font-size: 1rem;
     }
 
     .timeline-card p {
       margin: 0;
+
       color: var(--muted);
+
       line-height: 1.5;
+
       font-size: .84rem;
     }
 
-    /* MUSIC */
+
+    /* ================================
+       CONCERT
+    ================================= */
+
+    .concert-intro {
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: flex-start;
+
+      gap: 30px;
+
+      margin-bottom: 25px;
+
+      color: #cbd5e8;
+
+      font-family: monospace;
+
+      font-size: .74rem;
+    }
+
+    .concert-intro > div:first-child {
+      white-space: nowrap;
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 9px;
+    }
+
+    .concert-intro p {
+      margin: 0;
+
+      max-width: 520px;
+
+      color: var(--muted);
+
+      line-height: 1.6;
+
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Display",
+        sans-serif;
+
+      font-size: .88rem;
+    }
+
+    .concert-live-dot {
+      width: 7px;
+      height: 7px;
+
+      border-radius: 50%;
+
+      background: #ff415a;
+
+      box-shadow:
+        0 0 15px rgba(255,65,90,.9);
+
+      display: inline-block;
+    }
+
+
+    /* PLAYER */
+
+    .concert-player {
+      border-radius: 28px;
+
+      overflow: hidden;
+
+      position: relative;
+    }
+
+    .concert-player-top {
+      min-height: 62px;
+
+      padding: 0 22px;
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      border-bottom:
+        1px solid var(--border);
+    }
+
+    .concert-player-status {
+      display: flex;
+
+      align-items: center;
+
+      gap: 9px;
+
+      color: #bec8db;
+
+      font-family: monospace;
+
+      font-size: .7rem;
+
+      letter-spacing: .07em;
+    }
+
+    .concert-counter {
+      color: var(--muted);
+
+      font-family: monospace;
+
+      font-size: .72rem;
+    }
+
+
+    /* SWIPE AREA */
+
+    .concert-viewport {
+      overflow: hidden;
+
+      touch-action: pan-y;
+
+      cursor: grab;
+    }
+
+    .concert-viewport:active {
+      cursor: grabbing;
+    }
+
+    .concert-track {
+      display: flex;
+
+      transition:
+        transform .65s
+        cubic-bezier(.22,.85,.2,1);
+
+      will-change: transform;
+    }
+
+    .concert-slide {
+      min-width: 100%;
+
+      padding: 24px;
+    }
+
+
+    /* SONG CARD */
+
+    .concert-song-card {
+      min-height: 450px;
+
+      border-radius: 25px;
+
+      position: relative;
+
+      overflow: hidden;
+
+      padding: 35px;
+
+      display: flex;
+
+      flex-direction: column;
+
+      justify-content: flex-end;
+
+      background:
+        radial-gradient(
+          circle at 80% 10%,
+          rgba(111,79,255,.5),
+          transparent 35%
+        ),
+        radial-gradient(
+          circle at 20% 80%,
+          rgba(55,153,255,.24),
+          transparent 38%
+        ),
+        linear-gradient(
+          145deg,
+          #101525,
+          #090c14
+        );
+
+      border:
+        1px solid rgba(255,255,255,.1);
+    }
+
+    .concert-song-card::before {
+      content: "";
+
+      position: absolute;
+
+      inset: 0;
+
+      background:
+        linear-gradient(
+          180deg,
+          transparent 20%,
+          rgba(3,5,10,.92) 100%
+        );
+    }
+
+    .concert-card-orb {
+      position: absolute;
+
+      width: 300px;
+      height: 300px;
+
+      top: -90px;
+      right: -80px;
+
+      border-radius: 50%;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(134,88,255,.8),
+          rgba(47,126,255,.3)
+        );
+
+      filter: blur(2px);
+
+      box-shadow:
+        0 0 100px
+        rgba(100,80,255,.4);
+    }
+
+    .concert-track-number {
+      position: absolute;
+
+      top: 26px;
+      left: 29px;
+
+      font-family: monospace;
+
+      color:
+        rgba(255,255,255,.55);
+
+      font-size: .75rem;
+
+      letter-spacing: .12em;
+
+      z-index: 2;
+    }
+
+    .concert-song-content {
+      position: relative;
+
+      z-index: 2;
+    }
+
+    .concert-now-playing {
+      font-family: monospace;
+
+      font-size: .67rem;
+
+      letter-spacing: .12em;
+
+      color: #91b7ff;
+
+      margin-bottom: 10px;
+    }
+
+    .concert-song-title {
+      margin: 0;
+
+      font-size:
+        clamp(2.3rem, 8vw, 5rem);
+
+      line-height: .95;
+
+      letter-spacing: -.06em;
+
+      max-width: 750px;
+    }
+
+    .concert-song-artist {
+      margin-top: 13px;
+
+      color: #bac3d5;
+
+      font-size: 1rem;
+    }
+
+    .concert-song-meta {
+      display: flex;
+
+      gap: 22px;
+
+      margin-top: 22px;
+
+      color: #8791a5;
+
+      font-size: .72rem;
+
+      font-family: monospace;
+    }
+
+    .concert-details-button {
+      margin-top: 25px;
+
+      border:
+        1px solid rgba(255,255,255,.14);
+
+      border-radius: 999px;
+
+      padding: 12px 18px;
+
+      background:
+        rgba(255,255,255,.07);
+
+      color: white;
+
+      cursor: pointer;
+
+      transition: .25s;
+
+      backdrop-filter: blur(10px);
+
+      width: fit-content;
+    }
+
+    .concert-details-button:hover {
+      background:
+        rgba(255,255,255,.13);
+
+      transform:
+        translateY(-2px);
+    }
+
+
+    /* CONCERT CONTROLS */
+
+    .concert-controls {
+      height: 75px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      gap: 20px;
+
+      border-top:
+        1px solid var(--border);
+    }
+
+    .concert-arrow {
+      width: 43px;
+      height: 43px;
+
+      border-radius: 50%;
+
+      border:
+        1px solid var(--border);
+
+      background:
+        rgba(255,255,255,.04);
+
+      color: white;
+
+      cursor: pointer;
+
+      font-size: 1.1rem;
+
+      transition: .2s;
+    }
+
+    .concert-arrow:hover {
+      background:
+        rgba(255,255,255,.1);
+
+      transform:
+        scale(1.06);
+    }
+
+    .concert-dots {
+      display: flex;
+
+      gap: 7px;
+    }
+
+    .concert-dot {
+      width: 6px;
+      height: 6px;
+
+      border: none;
+
+      border-radius: 999px;
+
+      background:
+        rgba(255,255,255,.25);
+
+      padding: 0;
+
+      cursor: pointer;
+
+      transition: .3s;
+    }
+
+    .concert-dot.active {
+      width: 23px;
+
+      background:
+        linear-gradient(
+          90deg,
+          var(--blue),
+          var(--purple)
+        );
+    }
+
+    .concert-next {
+      padding: 14px 22px;
+
+      display: flex;
+
+      justify-content: space-between;
+
+      gap: 20px;
+
+      border-top:
+        1px solid var(--border);
+
+      font-size: .72rem;
+    }
+
+    .concert-next span {
+      color: #727d92;
+
+      font-family: monospace;
+    }
+
+    .concert-next strong {
+      color: #c7d0e0;
+    }
+
+
+    /* SETLIST */
+
+    .setlist {
+      margin-top: 18px;
+
+      border-radius: 24px;
+
+      overflow: hidden;
+    }
+
+    .setlist-header {
+      padding: 24px;
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: flex-end;
+
+      border-bottom:
+        1px solid var(--border);
+    }
+
+    .setlist-header h3 {
+      margin: 5px 0 0;
+
+      font-size: 1.3rem;
+    }
+
+    .setlist-header > span {
+      color: var(--muted);
+
+      font-size: .72rem;
+
+      font-family: monospace;
+    }
+
+    .setlist-small {
+      color: #8dacff;
+
+      font-family: monospace;
+
+      font-size: .64rem;
+
+      letter-spacing: .1em;
+    }
+
+    .setlist-song {
+      min-height: 70px;
+
+      padding: 10px 18px;
+
+      display: grid;
+
+      grid-template-columns:
+        35px 1fr auto;
+
+      gap: 13px;
+
+      align-items: center;
+
+      border-bottom:
+        1px solid var(--border);
+
+      cursor: pointer;
+
+      transition: .2s;
+    }
+
+    .setlist-song:last-child {
+      border-bottom: none;
+    }
+
+    .setlist-song:hover {
+      background:
+        rgba(255,255,255,.04);
+    }
+
+    .setlist-song.active {
+      background:
+        linear-gradient(
+          90deg,
+          rgba(95,120,255,.1),
+          transparent
+        );
+    }
+
+    .setlist-number {
+      color: #707b90;
+
+      font-family: monospace;
+
+      font-size: .7rem;
+    }
+
+    .setlist-info strong {
+      display: block;
+
+      font-size: .9rem;
+    }
+
+    .setlist-info span {
+      display: block;
+
+      margin-top: 4px;
+
+      color: var(--muted);
+
+      font-size: .72rem;
+    }
+
+    .setlist-duration {
+      color: #778296;
+
+      font-family: monospace;
+
+      font-size: .68rem;
+    }
+        /* ================================
+       MUSIC REQUESTS
+    ================================= */
 
     .music-card,
     .photo-card,
     .share-card {
       border-radius: 24px;
+
       padding: 28px;
     }
 
@@ -502,57 +1280,95 @@
     .photo-card p,
     .share-card p {
       color: var(--muted);
+
       line-height: 1.6;
     }
 
     .song-form {
       display: flex;
+
       gap: 10px;
+
       margin-top: 20px;
     }
 
     .song-form input {
       flex: 1;
-      background: rgba(255,255,255,.05);
-      border: 1px solid var(--border);
+
+      background:
+        rgba(255,255,255,.05);
+
+      border:
+        1px solid var(--border);
+
       border-radius: 14px;
+
       padding: 15px;
+
       color: white;
+
       outline: none;
     }
 
     .song-form input:focus {
-      border-color: rgba(110,140,255,.7);
-      box-shadow: 0 0 0 4px rgba(80,100,255,.08);
+      border-color:
+        rgba(110,140,255,.7);
+
+      box-shadow:
+        0 0 0 4px
+        rgba(80,100,255,.08);
     }
 
     .primary-btn {
       border: none;
+
       border-radius: 14px;
+
       padding: 0 22px;
+
       color: white;
+
       cursor: pointer;
+
       font-weight: 700;
+
       background:
-        linear-gradient(90deg, #754cff, #9a35ff);
+        linear-gradient(
+          90deg,
+          #754cff,
+          #9a35ff
+        );
+
       box-shadow:
-        0 10px 30px rgba(120,60,255,.25);
+        0 10px 30px
+        rgba(120,60,255,.25);
     }
 
     .wishlist {
       margin-top: 20px;
-      border: 1px solid var(--border);
+
+      border:
+        1px solid var(--border);
+
       border-radius: 16px;
+
       overflow: hidden;
     }
 
     .song {
       padding: 14px 16px;
+
       display: flex;
+
       align-items: center;
+
       justify-content: space-between;
-      border-bottom: 1px solid var(--border);
+
+      border-bottom:
+        1px solid var(--border);
+
       font-size: .8rem;
+
       color: #c1cade;
     }
 
@@ -562,52 +1378,80 @@
 
     .song-like {
       background: transparent;
+
       border: none;
+
       color: #c1cade;
+
       font: inherit;
+
       cursor: pointer;
+
       padding: 4px 8px;
+
       border-radius: 8px;
+
       transition: .2s;
     }
 
     .song-like:hover {
-      background: rgba(255,255,255,.06);
+      background:
+        rgba(255,255,255,.06);
+
       color: white;
     }
 
     .song-like:disabled {
       cursor: default;
+
       opacity: .6;
     }
 
     .wishlist-empty,
     .photo-empty {
       padding: 16px;
+
       color: var(--muted);
+
       font-size: .8rem;
+
       text-align: center;
     }
 
-    /* PHOTOS */
+
+    /* ================================
+       PHOTOS
+    ================================= */
 
     .upload-zone {
       margin-top: 20px;
+
       border-radius: 18px;
+
       padding: 35px 20px;
-      border: 1px dashed rgba(180,195,220,.3);
+
+      border:
+        1px dashed
+        rgba(180,195,220,.3);
+
       text-align: center;
+
       cursor: pointer;
+
       transition: .25s;
     }
 
     .upload-zone:hover {
-      background: rgba(255,255,255,.035);
-      border-color: #7fa7ff;
+      background:
+        rgba(255,255,255,.035);
+
+      border-color:
+        #7fa7ff;
     }
 
     .upload-zone strong {
       display: block;
+
       margin-top: 10px;
     }
 
@@ -617,34 +1461,58 @@
 
     .photo-grid {
       margin-top: 20px;
+
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+
+      grid-template-columns:
+        repeat(
+          auto-fill,
+          minmax(120px, 1fr)
+        );
+
       gap: 10px;
     }
 
     .photo-thumb {
       aspect-ratio: 1;
+
       border-radius: 14px;
+
       overflow: hidden;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.03);
+
+      border:
+        1px solid var(--border);
+
+      background:
+        rgba(255,255,255,.03);
+
       cursor: pointer;
+
       transition: .2s;
     }
 
     .photo-thumb:hover {
-      border-color: rgba(100,160,255,.45);
-      transform: translateY(-3px);
+      border-color:
+        rgba(100,160,255,.45);
+
+      transform:
+        translateY(-3px);
     }
 
     .photo-thumb img {
       width: 100%;
+
       height: 100%;
+
       object-fit: cover;
+
       display: block;
     }
 
-    /* SHARE */
+
+    /* ================================
+       SHARE
+    ================================= */
 
     .share-card {
       text-align: center;
@@ -652,55 +1520,93 @@
 
     .qr {
       width: 190px;
+
       height: 190px;
+
       margin: 25px auto;
+
       border-radius: 18px;
+
       background: white;
-      border: 12px solid white;
-      box-shadow: 0 20px 50px rgba(0,0,0,.4);
+
+      border:
+        12px solid white;
+
+      box-shadow:
+        0 20px 50px
+        rgba(0,0,0,.4);
+
       overflow: hidden;
     }
 
     .qr img {
       width: 100%;
+
       height: 100%;
+
       display: block;
     }
 
     .url-box {
       display: flex;
+
       margin: auto;
+
       max-width: 440px;
-      background: rgba(255,255,255,.04);
-      border: 1px solid var(--border);
+
+      background:
+        rgba(255,255,255,.04);
+
+      border:
+        1px solid var(--border);
+
       border-radius: 14px;
+
       overflow: hidden;
     }
 
     .url-box span {
       flex: 1;
+
       padding: 14px;
+
       color: #bac5db;
+
       font-family: monospace;
+
       font-size: .75rem;
     }
 
     .url-box button {
       width: 55px;
+
       background: transparent;
+
       border: none;
-      border-left: 1px solid var(--border);
+
+      border-left:
+        1px solid var(--border);
+
       color: white;
+
       cursor: pointer;
     }
 
-    /* FOOTER */
+
+    /* ================================
+       FOOTER
+    ================================= */
 
     footer {
-      padding: 50px 20px 80px;
+      padding:
+        50px 20px 80px;
+
       text-align: center;
+
       color: #6d778c;
+
       font-family: monospace;
+
       font-size: .72rem;
     }
 
@@ -708,64 +1614,121 @@
       color: #53e88f;
     }
 
-    /* TERMINAL */
 
-    .terminal-overlay {
+    /* ================================
+       TERMINAL / LIGHTBOX
+    ================================= */
+
+    .terminal-overlay,
+    .lightbox-overlay,
+    .song-detail-overlay {
       position: fixed;
+
       inset: 0;
+
       z-index: 500;
-      background: rgba(0,0,0,.7);
-      backdrop-filter: blur(14px);
+
+      background:
+        rgba(0,0,0,.75);
+
+      backdrop-filter:
+        blur(14px);
+
+      -webkit-backdrop-filter:
+        blur(14px);
+
       display: none;
+
       place-items: center;
+
       padding: 20px;
     }
 
-    .terminal-overlay.active {
+    .terminal-overlay.active,
+    .lightbox-overlay.active {
       display: grid;
     }
 
+    .song-detail-overlay {
+      z-index: 900;
+
+      overflow-y: auto;
+
+      place-items:
+        start center;
+    }
+
+    .song-detail-overlay.active {
+      display: grid;
+    }
+
+
+    /* TERMINAL */
+
     .terminal {
-      width: min(700px, 100%);
+      width:
+        min(700px, 100%);
+
       min-height: 340px;
+
       border-radius: 22px;
+
       overflow: hidden;
     }
 
     .terminal-bar {
       height: 50px;
+
       display: flex;
+
       align-items: center;
+
       justify-content: space-between;
+
       padding: 0 16px;
-      border-bottom: 1px solid var(--border);
+
+      border-bottom:
+        1px solid var(--border);
     }
 
     .dots {
       display: flex;
+
       gap: 7px;
     }
 
     .dots i {
       width: 10px;
+
       height: 10px;
+
       border-radius: 50%;
-      background: rgba(255,255,255,.22);
+
+      background:
+        rgba(255,255,255,.22);
     }
 
     .close {
       background: none;
+
       border: none;
+
       color: white;
+
       font-size: 1.6rem;
+
       cursor: pointer;
     }
 
     .terminal-body {
       padding: 22px;
+
       font-family: monospace;
+
       font-size: .8rem;
+
       line-height: 1.8;
+
       color: #bdc6d8;
     }
 
@@ -773,82 +1736,348 @@
       color: var(--green);
     }
 
+
     /* LIGHTBOX */
-
-    .lightbox-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 600;
-      background: rgba(0,0,0,.85);
-      backdrop-filter: blur(14px);
-      display: none;
-      place-items: center;
-      padding: 20px;
-    }
-
-    .lightbox-overlay.active {
-      display: grid;
-    }
 
     .lightbox-close {
       position: absolute;
+
       top: 18px;
+
       right: 22px;
     }
 
     .lightbox-content {
-      width: min(900px, 100%);
+      width:
+        min(900px, 100%);
+
       display: flex;
+
       flex-direction: column;
+
       align-items: center;
+
       gap: 16px;
     }
 
     .lightbox-content img {
       max-width: 100%;
+
       max-height: 72vh;
+
       border-radius: 18px;
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
+
+      border:
+        1px solid var(--border);
+
+      box-shadow:
+        var(--shadow);
     }
 
     .lightbox-download {
-      border: 1px solid var(--border);
+      border:
+        1px solid var(--border);
+
       border-radius: 14px;
+
       padding: 12px 22px;
-      background: rgba(255,255,255,.06);
+
+      background:
+        rgba(255,255,255,.06);
+
       color: white;
+
       cursor: pointer;
+
       font-weight: 700;
+
       font-size: .85rem;
+
       transition: .2s;
     }
 
     .lightbox-download:hover {
-      background: rgba(255,255,255,.12);
+      background:
+        rgba(255,255,255,.12);
     }
 
-    /* REVEAL */
+
+    /* ================================
+       SONG DETAIL VIEW
+    ================================= */
+
+    .song-detail-modal {
+      width:
+        min(900px, 100%);
+
+      margin:
+        20px auto;
+
+      border-radius: 30px;
+
+      padding: 30px;
+
+      position: relative;
+    }
+
+    .song-detail-close {
+      position: absolute;
+
+      top: 18px;
+
+      right: 18px;
+
+      z-index: 5;
+
+      width: 40px;
+
+      height: 40px;
+
+      border-radius: 50%;
+
+      border:
+        1px solid var(--border);
+
+      background:
+        rgba(0,0,0,.3);
+
+      color: white;
+
+      font-size: 1.3rem;
+
+      cursor: pointer;
+    }
+
+    .song-detail-hero {
+      display: grid;
+
+      grid-template-columns:
+        260px 1fr;
+
+      gap: 35px;
+
+      align-items: center;
+    }
+
+    .song-detail-cover {
+      aspect-ratio: 1;
+
+      border-radius: 24px;
+
+      overflow: hidden;
+
+      position: relative;
+
+      background:
+        radial-gradient(
+          circle at 70% 20%,
+          rgba(160,90,255,.7),
+          transparent 30%
+        ),
+        linear-gradient(
+          145deg,
+          #10172a,
+          #06080e
+        );
+
+      border:
+        1px solid var(--border);
+
+      box-shadow:
+        0 25px 50px
+        rgba(0,0,0,.4);
+    }
+
+    .song-detail-cover-glow {
+      width: 200px;
+
+      height: 200px;
+
+      position: absolute;
+
+      top: -80px;
+
+      right: -60px;
+
+      border-radius: 50%;
+
+      background:
+        linear-gradient(
+          #985cff,
+          #397eff
+        );
+
+      filter:
+        blur(4px);
+
+      opacity: .8;
+    }
+
+    .song-detail-number {
+      position: absolute;
+
+      top: 20px;
+
+      left: 20px;
+
+      color:
+        rgba(255,255,255,.5);
+
+      font-family: monospace;
+    }
+
+    .song-detail-cover-title {
+      position: absolute;
+
+      left: 20px;
+
+      bottom: 20px;
+
+      font-weight: 800;
+
+      letter-spacing: -.04em;
+    }
+
+    .song-detail-label,
+    .song-detail-section-label {
+      color: #80aaff;
+
+      font-family: monospace;
+
+      font-size: .68rem;
+
+      letter-spacing: .12em;
+    }
+
+    .song-detail-main h2 {
+      font-size:
+        clamp(2rem, 7vw, 4.4rem);
+
+      margin:
+        8px 0;
+
+      letter-spacing: -.06em;
+
+      line-height: .95;
+    }
+
+    .song-detail-artist {
+      color: var(--muted);
+
+      font-size: 1rem;
+    }
+
+    .song-detail-meta {
+      display: grid;
+
+      grid-template-columns:
+        repeat(4, 1fr);
+
+      gap: 10px;
+
+      margin-top: 28px;
+    }
+
+    .song-detail-meta > div {
+      padding: 13px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 14px;
+
+      background:
+        rgba(255,255,255,.035);
+    }
+
+    .song-detail-meta span {
+      display: block;
+
+      color: #798498;
+
+      font-size: .62rem;
+
+      text-transform: uppercase;
+
+      margin-bottom: 5px;
+    }
+
+    .song-detail-meta strong {
+      font-size: .78rem;
+    }
+
+    .song-detail-description {
+      margin-top: 35px;
+
+      padding-top: 30px;
+
+      border-top:
+        1px solid var(--border);
+    }
+
+    .song-detail-description p {
+      color: #aeb8cb;
+
+      line-height: 1.7;
+    }
+
+    .song-lyrics {
+      margin-top: 35px;
+    }
+
+    .lyrics-content {
+      margin-top: 18px;
+
+      font-size:
+        clamp(1.1rem, 3vw, 1.45rem);
+
+      line-height: 1.9;
+
+      letter-spacing: -.015em;
+
+      white-space: pre-line;
+
+      color: #d8deea;
+    }
+
+
+    /* ================================
+       SCROLL REVEAL
+    ================================= */
 
     .reveal {
-      opacity: 0;
-      transform: translateY(25px);
+      opacity: 1;
+
+      transform:
+        translateY(0);
+
       transition:
         opacity .8s ease,
         transform .8s ease;
     }
 
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
+    body.js-ready .reveal {
+      opacity: 0;
+
+      transform:
+        translateY(25px);
     }
+
+    body.js-ready .reveal.visible {
+      opacity: 1;
+
+      transform:
+        translateY(0);
+    }
+
+
+    /* ================================
+       MOBILE
+    ================================= */
 
     @media (max-width: 720px) {
 
-      .desktop-nav {
-        display: none;
-      }
-
+      .desktop-nav,
       .date-pill {
         display: none;
       }
@@ -862,12 +2091,15 @@
       }
 
       .quick-nav {
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns:
+          repeat(3, 1fr);
+
         gap: 7px;
       }
 
       .quick-button {
-        padding: 12px 3px;
+        padding:
+          12px 3px;
       }
 
       .quick-label {
@@ -879,7 +2111,8 @@
       }
 
       .countdown {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns:
+          repeat(2, 1fr);
       }
 
       .count-box:nth-child(2) {
@@ -888,7 +2121,8 @@
 
       .count-box:nth-child(1),
       .count-box:nth-child(2) {
-        border-bottom: 1px solid var(--border);
+        border-bottom:
+          1px solid var(--border);
       }
 
       .song-form {
@@ -899,64 +2133,166 @@
         padding: 15px;
       }
 
+      .concert-intro {
+        flex-direction: column;
+
+        gap: 12px;
+      }
+
+      .concert-slide {
+        padding: 10px;
+      }
+
+      .concert-song-card {
+        min-height: 500px;
+
+        padding: 25px;
+
+        border-radius: 20px;
+      }
+
+      .concert-song-meta {
+        flex-wrap: wrap;
+      }
+
+      .song-detail-modal {
+        padding: 20px;
+
+        margin:
+          5px auto 20px;
+      }
+
+      .song-detail-hero {
+        grid-template-columns: 1fr;
+      }
+
+      .song-detail-cover {
+        width:
+          min(75vw, 280px);
+
+        margin: auto;
+      }
+
+      .song-detail-meta {
+        grid-template-columns:
+          1fr 1fr;
+      }
+
     }
+
   </style>
 </head>
 
+
 <body>
 
-  <!-- NAVIGATION -->
+
+  <!-- ================================
+       NAVIGATION
+  ================================= -->
 
   <nav class="nav glass">
-    <a href="#home" class="brand">
+
+    <a
+      href="#home"
+      class="brand"
+    >
       <span>FELIX</span> // 18.0
     </a>
 
+
     <div class="desktop-nav">
-      <a href="#info">Info</a>
-      <a href="#ablauf">Ablauf</a>
-      <a href="#musik">Musik</a>
-      <a href="#fotos">Fotos</a>
+
+      <a href="#info">
+        Info
+      </a>
+
+      <a href="#ablauf">
+        Ablauf
+      </a>
+
+      <a href="#konzert">
+        Konzert
+      </a>
+
+      <a href="#musik">
+        Musik
+      </a>
+
+      <a href="#fotos">
+        Fotos
+      </a>
+
     </div>
+
 
     <div class="date-pill">
       15.08.2026
     </div>
+
   </nav>
 
 
-  <!-- HERO -->
+  <!-- ================================
+       HERO
+  ================================= -->
 
-  <section class="hero" id="home">
+  <section
+    class="hero"
+    id="home"
+  >
 
     <div class="container hero-inner">
 
       <div class="access-card glass reveal">
 
         <div class="terminal-top">
+
           <div class="status">
+
             <span class="status-dot"></span>
+
             ACCESS GRANTED
+
           </div>
 
-          <span>&lt;/&gt;</span>
+          <span>
+            &lt;/&gt;
+          </span>
+
         </div>
 
+
         <h1 class="hero-title">
-          FELIX <span>18.0</span>
+
+          FELIX
+
+          <span>
+            18.0
+          </span>
+
         </h1>
+
 
         <div class="birthday-text">
           Birthday 2026
         </div>
 
+
         <p class="hero-description">
-          Two Days. One Celebration. Unforgettable Memories.
+
+          Two Days. One Celebration.
+          Unforgettable Memories.
+
           Willkommen zu Felix Birthday 2026.
+
         </p>
 
+
         <div class="event-date">
+
           📅 15.08.2026 → 16.08.2026
+
         </div>
 
 
@@ -965,23 +2301,66 @@
         <div class="countdown glass">
 
           <div class="count-box">
-            <span class="count-number" id="days">00</span>
-            <div class="count-label">Tage</div>
+
+            <span
+              class="count-number"
+              id="days"
+            >
+              00
+            </span>
+
+            <div class="count-label">
+              Tage
+            </div>
+
           </div>
 
-          <div class="count-box">
-            <span class="count-number" id="hours">00</span>
-            <div class="count-label">Stunden</div>
-          </div>
 
           <div class="count-box">
-            <span class="count-number" id="minutes">00</span>
-            <div class="count-label">Minuten</div>
+
+            <span
+              class="count-number"
+              id="hours"
+            >
+              00
+            </span>
+
+            <div class="count-label">
+              Stunden
+            </div>
+
           </div>
 
+
           <div class="count-box">
-            <span class="count-number" id="seconds">00</span>
-            <div class="count-label">Sekunden</div>
+
+            <span
+              class="count-number"
+              id="minutes"
+            >
+              00
+            </span>
+
+            <div class="count-label">
+              Minuten
+            </div>
+
+          </div>
+
+
+          <div class="count-box">
+
+            <span
+              class="count-number"
+              id="seconds"
+            >
+              00
+            </span>
+
+            <div class="count-label">
+              Sekunden
+            </div>
+
           </div>
 
         </div>
@@ -991,29 +2370,99 @@
 
         <div class="quick-nav">
 
-          <a href="#info" class="quick-button">
-            <div class="quick-icon">ⓘ</div>
-            <div class="quick-label">Info</div>
+          <a
+            href="#info"
+            class="quick-button"
+          >
+
+            <div class="quick-icon">
+              ⓘ
+            </div>
+
+            <div class="quick-label">
+              Info
+            </div>
+
           </a>
 
-          <a href="#ablauf" class="quick-button">
-            <div class="quick-icon">◷</div>
-            <div class="quick-label">Ablauf</div>
+
+          <a
+            href="#ablauf"
+            class="quick-button"
+          >
+
+            <div class="quick-icon">
+              ◷
+            </div>
+
+            <div class="quick-label">
+              Ablauf
+            </div>
+
           </a>
 
-          <a href="#musik" class="quick-button">
-            <div class="quick-icon">♫</div>
-            <div class="quick-label">Musik</div>
+
+          <a
+            href="#konzert"
+            class="quick-button"
+          >
+
+            <div class="quick-icon">
+              ◉
+            </div>
+
+            <div class="quick-label">
+              Konzert
+            </div>
+
           </a>
 
-          <a href="#fotos" class="quick-button">
-            <div class="quick-icon">▧</div>
-            <div class="quick-label">Fotos</div>
+
+          <a
+            href="#musik"
+            class="quick-button"
+          >
+
+            <div class="quick-icon">
+              ♫
+            </div>
+
+            <div class="quick-label">
+              Musik
+            </div>
+
           </a>
 
-          <button onclick="openTerminal()" class="quick-button">
-            <div class="quick-icon">&lt;/&gt;</div>
-            <div class="quick-label">Dev</div>
+
+          <a
+            href="#fotos"
+            class="quick-button"
+          >
+
+            <div class="quick-icon">
+              ▧
+            </div>
+
+            <div class="quick-label">
+              Fotos
+            </div>
+
+          </a>
+
+
+          <button
+            onclick="openTerminal()"
+            class="quick-button"
+          >
+
+            <div class="quick-icon">
+              &lt;/&gt;
+            </div>
+
+            <div class="quick-label">
+              Dev
+            </div>
+
           </button>
 
         </div>
@@ -1025,9 +2474,14 @@
   </section>
 
 
-  <!-- INFO -->
+  <!-- ================================
+       INFO
+  ================================= -->
 
-  <section class="content" id="info">
+  <section
+    class="content"
+    id="info"
+  >
 
     <div class="container">
 
@@ -1035,11 +2489,14 @@
         // EVENT INFO
       </div>
 
+
       <h2 class="section-title reveal">
         Alle wichtigen Details.
       </h2>
 
+
       <div class="info-grid">
+
 
         <div class="info-card glass reveal">
 
@@ -1048,6 +2505,7 @@
           </div>
 
           <div>
+
             <div class="info-label">
               Datum
             </div>
@@ -1059,6 +2517,7 @@
             <div class="info-small">
               Start aktuell geplant um 18:00 Uhr.
             </div>
+
           </div>
 
         </div>
@@ -1071,6 +2530,7 @@
           </div>
 
           <div>
+
             <div class="info-label">
               Location
             </div>
@@ -1080,8 +2540,9 @@
             </div>
 
             <div class="info-small">
-              Die genaue Adresse kannst du hier später eintragen.
+              Die Location ist bei mir!
             </div>
+
           </div>
 
         </div>
@@ -1094,6 +2555,7 @@
           </div>
 
           <div>
+
             <div class="info-label">
               Dresscode
             </div>
@@ -1105,6 +2567,7 @@
             <div class="info-small">
               Be you. Bring good vibes.
             </div>
+
           </div>
 
         </div>
@@ -1117,6 +2580,7 @@
           </div>
 
           <div>
+
             <div class="info-label">
               Besonderes
             </div>
@@ -1128,6 +2592,7 @@
             <div class="info-small">
               Musik, Drinks, Freunde und Erinnerungen.
             </div>
+
           </div>
 
         </div>
@@ -1137,7 +2602,9 @@
 
       <div class="code-message glass reveal">
 
-        <strong>READY FOR TAKEOFF?</strong>
+        <strong>
+          READY FOR TAKEOFF?
+        </strong>
 
         <br><br>
 
@@ -1157,9 +2624,14 @@
   </section>
 
 
-  <!-- ABLAUF -->
+  <!-- ================================
+       ABLAUF
+  ================================= -->
 
-  <section class="content" id="ablauf">
+  <section
+    class="content"
+    id="ablauf"
+  >
 
     <div class="container">
 
@@ -1206,15 +2678,15 @@
           <div class="timeline-card">
 
             <div class="timeline-time">
-              20:00
+              19:00
             </div>
 
             <h3>
-              Dinner Time
+              Konzert
             </h3>
 
             <p>
-              Gutes Essen für gute Energie.
+              Lasst euch verzaubern vom KirchholzlerRocker.
             </p>
 
           </div>
@@ -1229,16 +2701,15 @@
           <div class="timeline-card">
 
             <div class="timeline-time">
-              22:00
+              20:00
             </div>
 
             <h3>
-              Party Start
+              Kino
             </h3>
 
             <p>
-              Musik an. Alltag aus.
-              Feiern wir.
+              Lasst uns die 18 Jahre noch mal erleben.
             </p>
 
           </div>
@@ -1292,6 +2763,174 @@
 
         </div>
 
+      </div>
+
+    </div>
+
+  </section>
+    <!-- ================================
+       KONZERT
+  ================================= -->
+
+  <section
+    class="content"
+    id="konzert"
+  >
+
+    <div class="container">
+
+      <div class="section-tag reveal">
+        // LIVE CONCERT
+      </div>
+
+      <h2 class="section-title reveal">
+        KirchholzlerRocker.
+      </h2>
+
+
+      <div class="concert-intro reveal">
+
+        <div>
+
+          <span class="concert-live-dot"></span>
+
+          LIVE · 15.08.2026 · 19:00
+
+        </div>
+
+
+        <p>
+
+          Entdecke die Songs des Konzerts.
+
+          Swipe nach links oder rechts und tippe auf einen Song,
+          um alle Informationen und den Songtext zu sehen.
+
+        </p>
+
+      </div>
+
+
+      <div class="concert-player glass reveal">
+
+
+        <!-- PLAYER TOP -->
+
+        <div class="concert-player-top">
+
+          <div class="concert-player-status">
+
+            <span class="concert-live-dot"></span>
+
+            <span>
+              FELIX BIRTHDAY LIVE
+            </span>
+
+          </div>
+
+
+          <div
+            class="concert-counter"
+            id="concertCounter"
+          >
+            01 / 04
+          </div>
+
+        </div>
+
+
+        <!-- SWIPE PLAYER -->
+
+        <div
+          class="concert-viewport"
+          id="concertViewport"
+        >
+
+          <div
+            class="concert-track"
+            id="concertTrack"
+          >
+          </div>
+
+        </div>
+
+
+        <!-- CONTROLS -->
+
+        <div class="concert-controls">
+
+          <button
+            class="concert-arrow"
+            onclick="previousConcertSong()"
+            aria-label="Vorheriger Song"
+          >
+            ←
+          </button>
+
+
+          <div
+            class="concert-dots"
+            id="concertDots"
+          >
+          </div>
+
+
+          <button
+            class="concert-arrow"
+            onclick="nextConcertSong()"
+            aria-label="Nächster Song"
+          >
+            →
+          </button>
+
+        </div>
+
+
+        <!-- NEXT SONG -->
+
+        <div class="concert-next">
+
+          <span>
+            NEXT
+          </span>
+
+          <strong id="concertNextSong">
+            —
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <!-- COMPLETE SETLIST -->
+
+      <div class="setlist glass reveal">
+
+        <div class="setlist-header">
+
+          <div>
+
+            <span class="setlist-small">
+              FULL SETLIST
+            </span>
+
+            <h3>
+              Konzert Playlist
+            </h3>
+
+          </div>
+
+
+          <span id="setlistCount">
+            0 Songs
+          </span>
+
+        </div>
+
+
+        <div id="concertSetlist">
+        </div>
 
       </div>
 
@@ -1300,15 +2939,21 @@
   </section>
 
 
-  <!-- MUSIK -->
+  <!-- ================================
+       MUSIKWÜNSCHE
+  ================================= -->
 
-  <section class="content" id="musik">
+  <section
+    class="content"
+    id="musik"
+  >
 
     <div class="container">
 
       <div class="section-tag reveal">
         // MUSIKWUNSCH
       </div>
+
 
       <h2 class="section-title reveal">
         Dein Song für die Party.
@@ -1318,8 +2963,11 @@
       <div class="music-card glass reveal">
 
         <p>
+
           Welcher Track darf auf keinen Fall fehlen?
+
           Schick deinen Musikwunsch ab.
+
         </p>
 
 
@@ -1331,6 +2979,7 @@
             placeholder="Song oder Künstler eingeben..."
           />
 
+
           <button
             class="primary-btn"
             onclick="addSong()"
@@ -1341,7 +2990,10 @@
         </div>
 
 
-        <div class="wishlist" id="wishlist">
+        <div
+          class="wishlist"
+          id="wishlist"
+        >
 
           <div class="wishlist-empty">
             Lade Musikwünsche …
@@ -1356,15 +3008,21 @@
   </section>
 
 
-  <!-- FOTOS -->
+  <!-- ================================
+       FOTOS
+  ================================= -->
 
-  <section class="content" id="fotos">
+  <section
+    class="content"
+    id="fotos"
+  >
 
     <div class="container">
 
       <div class="section-tag reveal">
         // FOTOS
       </div>
+
 
       <h2 class="section-title reveal">
         Memories.
@@ -1374,9 +3032,12 @@
       <div class="photo-card glass reveal">
 
         <p>
+
           Halte die besten Momente fest
           und lade deine Fotos hoch.
+
         </p>
+
 
         <div
           class="upload-zone"
@@ -1387,13 +3048,16 @@
             ☁
           </div>
 
+
           <strong>
             Foto hochladen
           </strong>
 
+
           <small>
             Tippen zum Auswählen
           </small>
+
 
           <input
             id="fileInput"
@@ -1405,7 +3069,11 @@
 
         </div>
 
-        <div class="photo-grid" id="photoGrid">
+
+        <div
+          class="photo-grid"
+          id="photoGrid"
+        >
 
           <div class="photo-empty">
             Lade Fotos …
@@ -1420,7 +3088,9 @@
   </section>
 
 
-  <!-- SHARE -->
+  <!-- ================================
+       SHARE
+  ================================= -->
 
   <section class="content">
 
@@ -1432,12 +3102,16 @@
           // TEILEN
         </div>
 
-        <h2 style="
-          font-size:clamp(2rem,7vw,4rem);
-          letter-spacing:-.05em;
-        ">
+
+        <h2
+          style="
+            font-size:clamp(2rem,7vw,4rem);
+            letter-spacing:-.05em;
+          "
+        >
           Bring your Crew.
         </h2>
+
 
         <p>
           Teile die Party mit deinen Freunden.
@@ -1445,6 +3119,7 @@
 
 
         <div class="qr">
+
           <img
             src="https://api.qrserver.com/v1/create-qr-code/?size=340x340&data=https%3A%2F%2Ffelixlei1608.github.io%2Fbirthday-2026%2F"
             alt="QR-Code zur Party-Webseite"
@@ -1452,14 +3127,16 @@
             height="340"
             loading="lazy"
           />
+
         </div>
 
 
         <div class="url-box">
 
           <span id="shareUrl">
-            felixlei1608.github.io/birthday-2026
+            https://felixlei1608.github.io/birthday-2026/
           </span>
+
 
           <button onclick="copyURL()">
             ⧉
@@ -1474,7 +3151,9 @@
   </section>
 
 
-  <!-- FOOTER -->
+  <!-- ================================
+       FOOTER
+  ================================= -->
 
   <footer>
 
@@ -1490,7 +3169,9 @@
   </footer>
 
 
-  <!-- TERMINAL -->
+  <!-- ================================
+       TERMINAL
+  ================================= -->
 
   <div
     class="terminal-overlay"
@@ -1502,10 +3183,13 @@
       <div class="terminal-bar">
 
         <div class="dots">
+
           <i></i>
           <i></i>
           <i></i>
+
         </div>
+
 
         <button
           class="close"
@@ -1523,10 +3207,13 @@
       >
 
         <div>
+
           <span class="cmd">
             felix@birthday
           </span>:~$
+
           boot party.sh
+
         </div>
 
       </div>
@@ -1536,7 +3223,9 @@
   </div>
 
 
-  <!-- LIGHTBOX -->
+  <!-- ================================
+       PHOTO LIGHTBOX
+  ================================= -->
 
   <div
     class="lightbox-overlay"
@@ -1550,6 +3239,7 @@
       ×
     </button>
 
+
     <div class="lightbox-content">
 
       <img
@@ -1557,6 +3247,7 @@
         src=""
         alt="Party-Foto"
       />
+
 
       <button
         class="lightbox-download"
@@ -1570,49 +3261,325 @@
   </div>
 
 
-  <!-- Supabase-Client (Datenbank für Musikwünsche + Foto-Storage) -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- ================================
+       SONG DETAIL
+  ================================= -->
+
+  <div
+    class="song-detail-overlay"
+    id="songDetailOverlay"
+  >
+
+    <div class="song-detail-modal glass">
+
+      <button
+        class="song-detail-close"
+        onclick="closeSongDetails()"
+      >
+        ×
+      </button>
+
+
+      <div class="song-detail-hero">
+
+
+        <!-- COVER -->
+
+        <div class="song-detail-cover">
+
+          <div class="song-detail-cover-glow">
+          </div>
+
+
+          <div
+            class="song-detail-number"
+            id="songDetailNumber"
+          >
+            01
+          </div>
+
+
+          <div class="song-detail-cover-title">
+            FELIX 18.0
+          </div>
+
+        </div>
+
+
+        <!-- SONG INFO -->
+
+        <div class="song-detail-main">
+
+          <div class="song-detail-label">
+            LIVE SONG
+          </div>
+
+
+          <h2 id="songDetailTitle">
+            Song
+          </h2>
+
+
+          <div
+            id="songDetailArtist"
+            class="song-detail-artist"
+          >
+            KirchholzlerRocker
+          </div>
+
+
+          <div class="song-detail-meta">
+
+
+            <div>
+
+              <span>
+                Dauer
+              </span>
+
+              <strong id="songDetailDuration">
+                —
+              </strong>
+
+            </div>
+
+
+            <div>
+
+              <span>
+                Jahr
+              </span>
+
+              <strong id="songDetailYear">
+                —
+              </strong>
+
+            </div>
+
+
+            <div>
+
+              <span>
+                Position
+              </span>
+
+              <strong id="songDetailPosition">
+                —
+              </strong>
+
+            </div>
+
+
+            <div>
+
+              <span>
+                Event
+              </span>
+
+              <strong>
+                Felix 18.0
+              </strong>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ABOUT -->
+
+      <div class="song-detail-description">
+
+        <div class="song-detail-section-label">
+          // ABOUT
+        </div>
+
+
+        <p id="songDetailDescription">
+        </p>
+
+      </div>
+
+
+      <!-- LYRICS -->
+
+      <div class="song-lyrics">
+
+        <div class="song-detail-section-label">
+          // LYRICS
+        </div>
+
+
+        <div
+          class="lyrics-content"
+          id="songDetailLyrics"
+        >
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================================
+       SUPABASE
+  ================================= -->
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+  >
+  </script>
+
 
   <script>
 
     /*
+      =====================================
       SUPABASE CONFIG
-
-      Nach dem Anlegen des Supabase-Projekts (siehe README.md) hier die
-      Projekt-URL und den "anon public"-Key eintragen.
-      Zu finden im Supabase-Dashboard unter: Project Settings → API.
-      Der "anon" Key ist bewusst öffentlich verwendbar – der Zugriff wird
-      über Row-Level-Security-Policies in supabase/schema.sql geregelt.
+      =====================================
     */
 
-    const SUPABASE_URL = "https://jgxyurippcrydxtmehyw.supabase.co";
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpneHl1cmlwcGNyeWR4dG1laHl3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODYyMjUwNjcsImV4cCI6MjEwMTgwMTA2N30.v4FVkWz6uvyzs4pAxnOxx8VcqUUTeY6Iy7NdPaX_Mr4";
 
-    const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    const SUPABASE_URL =
+      "https://jgxyurippcrydxtmehyw.supabase.co";
+
+
+    const SUPABASE_ANON_KEY =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpneHl1cmlwcGNyeWR4dG1laHl3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODYyMjUwNjcsImV4cCI6MjEwMTgwMTA2N30.v4FVkWz6uvyzs4pAxnOxx8VcqUUTeY6Iy7NdPaX_Mr4";
+
+
+    let sb = null;
+
+
+    if (
+      typeof supabase !== "undefined"
+    ) {
+
+      sb =
+        supabase.createClient(
+          SUPABASE_URL,
+          SUPABASE_ANON_KEY
+        );
+
+    } else {
+
+      console.warn(
+        "Supabase konnte nicht geladen werden."
+      );
+
+    }
 
 
     /*
-      COUNTDOWN
+      =====================================
+      SCROLL SYSTEM
+      =====================================
     */
 
+
+    document.body.classList.add(
+      "js-ready"
+    );
+
+
+    if (
+      "IntersectionObserver" in window
+    ) {
+
+      const observer =
+        new IntersectionObserver(
+
+          entries => {
+
+            entries.forEach(
+              entry => {
+
+                if (
+                  entry.isIntersecting
+                ) {
+
+                  entry.target
+                    .classList
+                    .add("visible");
+
+                }
+
+              }
+            );
+
+          },
+
+          {
+            threshold: 0.12
+          }
+
+        );
+
+
+      document
+        .querySelectorAll(".reveal")
+        .forEach(
+          element => {
+
+            observer.observe(element);
+
+          }
+        );
+
+    } else {
+
+      document
+        .querySelectorAll(".reveal")
+        .forEach(
+          element => {
+
+            element
+              .classList
+              .add("visible");
+
+          }
+        );
+
+    }
+
+
+    /*
+      =====================================
+      COUNTDOWN
+      =====================================
+    */
+
+
     const birthday =
-      new Date("2026-08-15T18:00:00+02:00");
+      new Date(
+        "2026-08-15T18:00:00+02:00"
+      );
 
 
     function countdown() {
 
       let diff =
-        birthday.getTime() -
+        birthday.getTime()
+        -
         new Date().getTime();
 
 
       if (diff < 0) {
+
         diff = 0;
+
       }
 
 
       const days =
-        Math.floor(diff / 86400000);
+        Math.floor(
+          diff / 86400000
+        );
 
 
       const hours =
@@ -1633,114 +3600,1692 @@
         );
 
 
-      document.getElementById("days")
+      document
+        .getElementById("days")
         .textContent =
-        String(days).padStart(2, "0");
+        String(days)
+          .padStart(2, "0");
 
 
-      document.getElementById("hours")
+      document
+        .getElementById("hours")
         .textContent =
-        String(hours).padStart(2, "0");
+        String(hours)
+          .padStart(2, "0");
 
 
-      document.getElementById("minutes")
+      document
+        .getElementById("minutes")
         .textContent =
-        String(minutes).padStart(2, "0");
+        String(minutes)
+          .padStart(2, "0");
 
 
-      document.getElementById("seconds")
+      document
+        .getElementById("seconds")
         .textContent =
-        String(seconds).padStart(2, "0");
+        String(seconds)
+          .padStart(2, "0");
 
     }
 
 
     countdown();
 
-    setInterval(countdown, 1000);
 
+    setInterval(
+      countdown,
+      1000
+    );
 
 
     /*
-      SCROLL ANIMATIONS
+      =====================================
+      HTML ESCAPE
+      =====================================
     */
 
-    const observer =
-      new IntersectionObserver(
 
-        entries => {
+    function escapeHTML(text) {
 
-          entries.forEach(entry => {
+      const div =
+        document.createElement("div");
 
-            if (
-              entry.isIntersecting
-            ) {
 
-              entry.target
-                .classList
-                .add("visible");
+      div.textContent =
+        text;
+
+
+      return div.innerHTML;
+
+    }
+
+
+    /*
+      =====================================
+      CONCERT SONG DATA
+      =====================================
+    */
+
+
+    const concertSongs = [
+
+
+      {
+        title:
+          "Der erste Song",
+
+        artist:
+          "KirchholzlerRocker",
+
+        duration:
+          "03:42",
+
+        description:
+          "Der Opening-Track des Geburtstagskonzerts. Der Song eröffnet den Abend und startet offiziell den Live-Part von Felix Birthday 18.0.",
+
+        lyrics:
+`Strophe 1
+
+Hier kommt später dein Songtext hin.
+Du kannst den kompletten Text
+direkt in diesem Bereich eintragen.
+
+Refrain
+
+Das ist der Refrain des Songs.
+Er wird nach einem Klick auf
+„Song ansehen“ angezeigt.
+
+Strophe 2
+
+Hier kannst du beliebig viele
+weitere Zeilen hinzufügen.`
+      },
+
+
+      {
+        title:
+          "18 Jahre",
+
+        artist:
+          "KirchholzlerRocker",
+
+        duration:
+          "04:08",
+
+        description:
+          "Ein Song über 18 Jahre voller Geschichten, Erinnerungen, Freunde und die Momente, die Felix bis heute begleitet haben.",
+
+        lyrics:
+`Strophe 1
+
+Achtzehn Joa san jetzt vorbei,
+so vü erlebt und trotzdem frei.
+
+Von früher bis zum heutigen Tog,
+ois dabei, wos i so mog.
+
+Refrain
+
+18 Jahre – heute feiern wir,
+alle meine Freunde san heut hier.
+
+Und wenn die Nocht niemals vergeht,
+wissen wir, dass diese Erinnerung bleibt.`
+      },
+
+
+      {
+        title:
+          "Legendary Night",
+
+        artist:
+          "KirchholzlerRocker",
+
+        duration:
+          "03:31",
+
+        description:
+          "Der Party-Track des Abends. Laut, energiegeladen und gemacht für den Moment, wenn aus dem Konzert endgültig eine Party wird.",
+
+        lyrics:
+`Tonight we make it legendary,
+lights are shining everywhere.
+
+Everybody here together,
+this is one night we will share.
+
+We don't need tomorrow,
+we are living here tonight.
+
+Felix eighteen,
+everything feels right.`
+      },
+
+
+      {
+        title:
+          "Bis zum Morgen",
+
+        artist:
+          "KirchholzlerRocker",
+
+        duration:
+          "04:22",
+
+        description:
+          "Der Abschluss des Konzerts und gleichzeitig der Übergang in die Afterparty.",
+
+        lyrics:
+`Bis zum Morgen bleib ma do,
+keiner denkt ans Hamgeh no.
+
+Musik laut und Lichter an,
+weil die Nacht erst starten kann.
+
+Und irgendwann geht d'Sunn wieder auf,
+doch bis dahin hör ma niemals auf.`
+      },
+
+
+      {
+        title:
+          "Summer Vibes",
+
+        artist:
+          "KirchholzlerRocker",
+
+        duration:
+          "01:34",
+
+        year:
+          "2023",
+
+        description:
+          "Ein sonniger Sommer-Track über Strandpartys, Freundschaft und endlose Sommernächte.",
+
+        lyrics:
+`Sun shine on my Face
+feeling so alive
+
+grosing with my friends we're
+ready to drive
+
+Windows down breeze blowing
+throw my haar
+
+noting in this World
+that can compare
+
+Beach Partys all day
+endles summer nights
+
+dancing in the sand
+under neon lights
+
+We're like fireflits
+sparkling in the dark
+
+Living live the
+fullest leave a mark
+
+We're on top
+of the World
+
+feeling Beach drops like
+there's no Tomorow
+
+Can't stop
+
+This are the moments
+we'll never forget
+
+with the Summer Vibes we're
+living in the moments`
+      },
+
+
+      {
+        title:
+          "Echte Freunndschaft",
+
+        artist:
+          "KirchholzlerRocker",
+
+        duration:
+          "02:41",
+
+        year:
+          "2025",
+
+        description:
+          "Ein Song über echte Freundschaft und Erinnerungen, die seit dem Kindergarten halten.",
+
+        lyrics:
+`Spürst du das
+es fängt schon wieder an
+
+Erinnerungen in
+unsren Kopf
+
+Denk an die
+Schönen Zeiten
+
+An die
+Tollen Lieder
+
+Diese Zeit die uns
+nimmt niemand
+
+Auch wenn die Zeit
+so schnell vergeht
+
+unsere Erinnerungen
+uns ewig prägt
+
+Wir bleiben zusammen
+Das ist Verzicht
+
+und denken an alte Zeiten
+unser gemeinsames Licht
+
+Das ist echte Freundschaft
+
+Lachen über
+tolle Erinnerungen
+
+Weist du noch
+
+Wie wir damals im
+Kindergarten standen
+
+Und als Freunde
+uns fanden
+
+Freunde wurden wir
+ganz klar
+
+Zusammen stark
+das war wunderbar
+
+Auch wenn die Zeit
+so schnell vergeht
+
+unsere Erinnerungen
+uns ewig prägt
+
+Wir bleiben zusammen
+Das ist kein Verzicht
+
+und denken an alte Zeiten
+unser gemeinsames Licht
+
+Das ist echte Freundschaft
+
+Das ist echte Freundschaft
+
+Das ist kein Verzicht
+
+denken an alte Zeiten
+
+unser gemeinsames Licht
+
+Das ist echte Freundschaft
+
+Das ist echte Freundschaft
+
+Lachen über
+tolle Erinnerungen
+
+Weist du noch
+
+Wie wir damals im
+Kindergarten standen
+
+Und als Freunde
+uns fanden
+
+Freunde wurden wir
+ganz klar
+
+Zusammen stark
+das war wunderbar
+
+Auch wenn die Zeit
+so schnell vergeht`
+      },
+
+
+      {
+        title:
+          "Stack overflow of my heart",
+
+        artist:
+          "KirchholzlerRocker",
+
+        duration:
+          "02:30",
+
+        year:
+          "2026",
+
+        description:
+          "Eine augenzwinkernde Liebeserklärung in der Sprache eines Programmierers.",
+
+        lyrics:
+`[Verse 1]
+Coffee ring on the desk
+Blue glow on my face
+2 a.m
+Tabs open like a skyline
+Trying to fix this life in dev mode again
+
+You said
+"ship it or forget it"
+I keep rewriting what we were
+Console full of little warnings
+All the things I should've heard
+
+[Chorus]
+You're my stack overflow of my heart
+Every little bug
+You got the part
+When I crash hard
+You restart
+(yeah) you restart me
+Wrote our names in a clean new file
+Thought this code would run for a while
+But I'm lost in the dark
+Since you logged out of my heart
+
+[Verse 2]
+We were talking in short comments
+Inside jokes in every line
+You knew every hidden shortcut
+Cutting through the clutter in my mind
+
+Now I'm scrolling through old histories
+Seeing where it all went wrong
+Typed "how to let you go" again
+Hit enter
+But it still feels wrong
+
+[Chorus]
+You're my stack overflow of my heart
+Every little bug
+You got the part
+When I crash hard
+You restart
+(oh) you restart me
+Wrote our names in a clean new file
+Thought this code would run for a while
+But I'm lost in the dark
+Since you logged out of my heart
+
+[Bridge]
+I keep reaching for your avatar
+Like it's something I can hold
+All this markup 'round my memories
+Still can't make the story bold
+
+[Chorus]
+You're my stack overflow of my heart
+Every little bug
+You got the part
+When I crash hard
+You restart
+(hey) you restart me
+Wrote our names in a clean new file
+Thought this code would run for a while
+Now it's just me and this empty chart
+Since you logged out of my heart`
+      },
+
+
+      {
+        title:
+          "Eighteen Candles for Zuckerschaumpferdchen",
+
+        artist:
+          "KirchholzlerRocker",
+
+        duration:
+          "03:44",
+
+        year:
+          "2026",
+
+        description:
+          "Ein mehrsprachiges Geburtstagsständchen, gewidmet einem ganz besonderen Menschen.",
+
+        lyrics:
+`[Verse 1]
+Today the sun is shining brighter
+Magic dancing in the air
+A legend's turning eighteen now
+With sparkles everywhere
+
+I call you Zuckerschaumpferdchen
+A name so sweet and wild
+Like cotton-candy dreams at midnight
+And laughter like a child
+
+[Pre-Chorus]
+So raise your glass and sing it loud
+You're standing tall, you make us proud
+A brand-new chapter starts tonight
+Your future's glowing bright
+
+[Chorus]
+Happy birthday, Zuckerschaumpferdchen
+You're eighteen, shining like a star
+Joyeux anniversaire, mon ami
+Ce soir, on danse jusqu'à minuit
+
+Happy birthday, go your own way
+To dreams that carry you so far
+La vie commence, le monde t'attend
+Souris, mon cœur, c'est ton moment
+
+[Verse 2]
+No more waiting at the doorway
+The world is calling out your name
+With every wish and every candle
+Nothing ever stays the same
+
+You've got a heart made out of sunshine
+A soul that knows no fear
+And every friend around you knows
+We're lucky you are here
+
+[Pre-Chorus]
+So take the night and make it yours
+Run through every open door
+Eighteen years of memories
+Now chase your destiny
+
+[Chorus]
+Happy birthday, Zuckerschaumpferdchen
+You're eighteen, shining like a star
+Joyeux anniversaire, mon ami
+Ce soir, on danse jusqu'à minuit
+
+Happy birthday, go your own way
+To dreams that carry you so far
+La vie commence, le monde t'attend
+Souris, mon cœur, c'est ton moment
+
+[Bridge]
+Let the music play forever
+Let the candles light the sky
+Eighteen years of being awesome
+Now it's time to fly
+
+Zuckerschaumpferdchen, don't you change
+Stay weird, sweet, and true
+The world is brighter, louder, better
+Just because of you
+
+[Final Chorus]
+Happy birthday, Zuckerschaumpferdchen
+You're eighteen, shining like a star
+Joyeux anniversaire, mon ami
+Ce soir, on danse jusqu'à minuit
+
+Happy birthday, never forget
+You are loved just as you are
+Bravo, bravo, c'est ta journée
+On va chanter, on va fêter`
+      },
+
+
+      {
+        title:
+          "Drei Freind",
+
+        artist:
+          "KirchholzlerRocker",
+
+        duration:
+          "01:56",
+
+        year:
+          "2025",
+
+        description:
+          "Ein Austropop-Song über eine gemeinsame Nacht mit den besten Freunden.",
+
+        lyrics:
+`I woa scho in drei Discos und
+I woa scho in drei Bars
+
+I hob schon mit oaner telefoniert
+Und bin schon durch die halbe Stadt spaziert
+
+Jetzt sitz i da mit eich
+Und hobs die gaunzi Nacht vo eich
+
+Was homma uns verdient
+
+Ah
+
+Hoit an
+
+Weil des muaß a Freindschaft sei
+
+Sog
+
+Wos wern wir drei wieder so treib'n?
+
+Und sog
+
+Hoit an
+
+Weil des muaß a Freindschaft sei
+
+Sog
+
+Wos wern wir drei wieder so treib'n?
+
+Und sog
+
+Host dei Glaserl bei der Hand?
+
+Weil heut san ma wieda drei Freind
+
+Drei Freind
+
+Drei Freind
+
+Hoit an
+
+Weil des muaß a Freindschaft sei
+
+Sog
+
+Wos wern wir drei wieder so treib'n?
+
+Und sog
+
+Host dei Glaserl bei der Hand?
+
+Weil heut san ma wieda drei Freind
+
+drei Freind
+
+drei Freind
+
+drei Freind`
+      },
+
+
+      {
+        title:
+          "Dancing in the Rain",
+
+        artist:
+          "KirchholzlerRocker",
+
+        duration:
+          "02:42",
+
+        year:
+          "2025",
+
+        description:
+          "Ein energiegeladener Track übers Tanzen im Regen und die Nacht durchzumachen.",
+
+        lyrics:
+`Woke up this
+morning with a smile
+
+Sun hid away
+for a while
+
+Put on my boots
+Put on my coat
+
+Got a feeling
+I can't deny
+
+Raindrops drumming
+on my skin
+
+City lights begin
+to dim
+
+Every Heart begins
+to beat
+
+Follow me out
+into the street
+
+We're dancing in
+the rain to night
+
+Every drop a spark
+of light
+
+Let the thunder be
+our groove
+
+Together we'll
+never lose
+
+Puddles splash beneath
+our feet
+
+Every step so wild
+so free
+
+Lightning write your
+name across the sky
+
+Hand in hand we're
+flying high
+
+Cold breeze but we're
+feeling warm
+
+Getting lost
+in the storm
+
+Laughing loud
+feeling alive
+
+Moments we'll
+forever keep
+
+We're dancing in
+the rain to night
+
+Every drop a spark
+of light
+
+Let the thunder be
+our groove
+
+Together we'll
+never lose
+
+Lo-oo-oo-se
+
+Lo-oo-oo-se
+
+Feeling warm
+
+Getting lost
+in the storm
+
+Laughing loud
+feeling alive
+
+Moments we'll
+
+forever keep
+
+Ohh-Ohh
+
+We're dancing in
+the rain to night
+
+Every drop a spark
+of light
+
+Let the thunder be
+our groove
+
+Together we'll
+never lose
+
+Lo-oo-oo-se
+
+Lo-oo-oo-se
+
+Lo-oo-oo-se`
+      },
+
+
+      {
+        title:
+          "Summer (You still love him)",
+
+        artist:
+          "KirchholzlerRocker",
+
+        duration:
+          "03:00",
+
+        year:
+          "2026",
+
+        description:
+          "Ein nachdenklicherer Sommersong über Erinnerungen, die nicht ganz loslassen.",
+
+        lyrics:
+`[Verse]
+It was one of those golden years
+When you have a little hope
+You still believe in your friends
+Before the world kicks you in the throat
+And everybody knows
+You got a heavy heart
+And a stupid brain
+We both live with ghosts
+And I can't remember their names
+And everybody knows
+
+[Chorus]
+That you still love him
+Yeah, you still love him
+Everybody knows that you still love him
+
+[Verse 2]
+Well, it's an unseasonably hot June
+And everybody's dressed inappropriately
+And I'm so fucking happy to see you
+Because it seems like you still care about me
+At least I hope you do
+
+[Chorus]
+And that you still love him
+Yeah, you still love him
+Everybody knows that you still love him
+That you still love him
+Yeah, you still love him
+Everybody knows that you still love him
+
+[Outro]
+I mean, I know it's summer
+But it feels like fall
+There's something in the air
+And it's not alcohol
+It's love`
+      },
+
+
+      {
+        title:
+          "Run My Heart (Like Python)",
+
+        artist:
+          "KirchholzlerRocker",
+
+        duration:
+          "02:00",
+
+        year:
+          "2026",
+
+        description:
+          "Noch eine Programmierer-Liebeserklärung, diesmal in Python-Code verpackt.",
+
+        lyrics:
+`[Verse 1]
+I woke up in a loop again,
+Running circles in my mind.
+Tried to debug all my feelings,
+But your name is in the lines.
+I typed love = True just to see
+If the script would finally run,
+But every time I hit "execute",
+My heart comes undone.
+
+[Pre-Chorus]
+I tried to break the cycle,
+But the function won't let go.
+Your rhythm hits my system
+Like a beat inside my code.
+
+[Chorus]
+You run my heart like Python,
+Baby, you keep turning me on.
+I'm stuck inside your algorithm,
+And the loop goes on and on.
+while you in my mind:
+    print("I'm yours tonight")
+You run my heart like Python,
+And I can't stop the song.
+
+[Verse 2]
+Your smile hits like a variable
+Changing everything I know.
+I try to set my feelings False,
+But they always overflow.
+I catch exceptions in my chest,
+But they break right through the try.
+Guess love is just a script
+That even I can't simplify.
+
+[Bridge]
+Maybe we're just data
+In a world that moves too fast,
+But when you call my function
+I forget about the past.
+Let's write a brand-new module,
+Just you and me combined—
+A future we can import
+One heartbeat at a time.
+
+[Final Chorus]
+You run my heart like Python,
+Baby, you keep turning me on.
+I'm stuck inside your algorithm,
+And the loop goes on and on.
+for beat in my_heart:
+    print("We'll never part")
+You run my heart like Python,
+And now you own the song.`
+      },
+
+
+      {
+        title:
+          "Campfire Nights",
+
+        artist:
+          "KirchholzlerRocker",
+
+        duration:
+          "02:00",
+
+        year:
+          "2026",
+
+        description:
+          "Ein warmer Song über Lagerfeuerabende, Gitarrenmusik und unvergessliche Nächte.",
+
+        lyrics:
+`Verse 1:
+Golden hour, the sun is melting down
+Gather 'round, we're painting this town
+Tents are glowing, stars begin to shine
+Pour the drinks, everything feels fine
+
+Chorus:
+Campfire nights, we're burning bright
+Dancing shadows in the firelight
+Campfire nights, hold on tight
+These are the moments, this is our life
+Sing it loud, sing it strong
+Here's where we all belong
+Campfire nights, all night long
+Yeah, yeah, yeah, campfire nights
+
+Verse 2:
+Smoke is rising, stories intertwine
+Laughter echoing, you and me are flying
+Guitar strumming, voices blend as one
+Chasing memories 'til the morning sun
+
+Chorus:
+Campfire nights, we're burning bright
+Dancing shadows in the firelight
+Campfire nights, hold on tight
+These are the moments, this is our life
+Sing it loud, sing it strong
+Here's where we all belong
+Campfire nights, all night long
+
+Bridge:
+These are the nights we'll remember forever
+Under the stars, we're tied together
+No walls, no stress, just you and me
+Living wild and living free`
+      },
+
+
+      {
+        title:
+          "Sunny Days",
+
+        artist:
+          "KirchholzlerRocker",
+
+        duration:
+          "01:00",
+
+        year:
+          "2026",
+
+        description:
+          "Ein leichter Sommerhit über Strand, Sonne und gute Laune mit Freunden.",
+
+        lyrics:
+`[Verse]
+Bright skies
+Beach vibes
+We're feeling so alive
+Sand between our toes as we soak up the sunshine
+Palm trees swaying
+We're dancing in the breeze
+This summer's gonna be one we won't ever wanna leave
+
+[Verse 2]
+Cruising down the coast
+Radio up and windows down
+With every beat
+We're lost in the sound
+Laughing with our friends
+Living in the moment
+In this summer paradise
+We feel so open
+
+[Chorus]
+Sunny days
+We're chasing the rays
+Feeling the heat in every single way
+Singing along to our favorite tunes
+Let the music guide us through these summer afternoons`
+      }
+
+    ];
+
+
+    /*
+      =====================================
+      CONCERT VARIABLES
+      =====================================
+    */
+
+
+    let currentConcertSong = 0;
+
+
+    let concertTouchStartX = 0;
+
+    let concertTouchCurrentX = 0;
+
+
+    const concertTrack =
+      document.getElementById(
+        "concertTrack"
+      );
+
+
+    const concertCounter =
+      document.getElementById(
+        "concertCounter"
+      );
+
+
+    const concertDots =
+      document.getElementById(
+        "concertDots"
+      );
+
+
+    const concertNextSong =
+      document.getElementById(
+        "concertNextSong"
+      );
+
+
+    const concertSetlist =
+      document.getElementById(
+        "concertSetlist"
+      );
+
+
+    const concertViewport =
+      document.getElementById(
+        "concertViewport"
+      );
+
+
+    /*
+      =====================================
+      CREATE CONCERT PLAYER
+      =====================================
+    */
+
+
+    function createConcertPlayer() {
+
+      concertTrack.innerHTML = "";
+
+      concertDots.innerHTML = "";
+
+      concertSetlist.innerHTML = "";
+
+
+      concertSongs.forEach(
+        (song, index) => {
+
+
+          /*
+            SLIDE
+          */
+
+
+          const slide =
+            document.createElement(
+              "div"
+            );
+
+
+          slide.className =
+            "concert-slide";
+
+
+          slide.innerHTML = `
+
+            <article
+              class="concert-song-card"
+            >
+
+              <div
+                class="concert-card-orb"
+              >
+              </div>
+
+
+              <div
+                class="concert-track-number"
+              >
+                TRACK
+                ${String(index + 1).padStart(2, "0")}
+              </div>
+
+
+              <div
+                class="concert-song-content"
+              >
+
+
+                <div
+                  class="concert-now-playing"
+                >
+                  ● LIVE SETLIST
+                </div>
+
+
+                <h3
+                  class="concert-song-title"
+                >
+                  ${escapeHTML(song.title)}
+                </h3>
+
+
+                <div
+                  class="concert-song-artist"
+                >
+                  ${escapeHTML(song.artist)}
+                </div>
+
+
+                <div
+                  class="concert-song-meta"
+                >
+
+                  <span>
+                    ${song.duration}
+                  </span>
+
+                  <span>
+                    TRACK ${index + 1}
+                  </span>
+
+                  <span>
+                    ${song.year ? song.year : "FELIX BIRTHDAY 18.0"}
+                  </span>
+
+                </div>
+
+
+                <button
+                  class="concert-details-button"
+                  onclick="openSongDetails(${index})"
+                >
+                  Song ansehen →
+                </button>
+
+
+              </div>
+
+            </article>
+
+          `;
+
+
+          concertTrack
+            .appendChild(slide);
+
+
+          /*
+            DOT
+          */
+
+
+          const dot =
+            document.createElement(
+              "button"
+            );
+
+
+          dot.className =
+            "concert-dot";
+
+
+          dot.onclick =
+            () => {
+
+              goToConcertSong(index);
+
+            };
+
+
+          concertDots
+            .appendChild(dot);
+
+
+          /*
+            SETLIST ROW
+          */
+
+
+          const row =
+            document.createElement(
+              "div"
+            );
+
+
+          row.className =
+            "setlist-song";
+
+
+          row.dataset.index =
+            index;
+
+
+          row.innerHTML = `
+
+            <div
+              class="setlist-number"
+            >
+              ${String(index + 1).padStart(2, "0")}
+            </div>
+
+
+            <div
+              class="setlist-info"
+            >
+
+              <strong>
+                ${escapeHTML(song.title)}
+              </strong>
+
+              <span>
+                ${escapeHTML(song.artist)}
+              </span>
+
+            </div>
+
+
+            <div
+              class="setlist-duration"
+            >
+              ${song.duration}
+            </div>
+
+          `;
+
+
+          row.addEventListener(
+            "click",
+
+            () => {
+
+              goToConcertSong(index);
+
+              openSongDetails(index);
 
             }
+          );
 
-          });
 
-        },
+          concertSetlist
+            .appendChild(row);
 
-        {
-          threshold: 0.12
+        }
+      );
+
+
+      document
+        .getElementById(
+          "setlistCount"
+        )
+        .textContent =
+        concertSongs.length
+        +
+        (
+          concertSongs.length === 1
+          ? " Song"
+          : " Songs"
+        );
+
+
+      updateConcertPlayer();
+
+    }
+
+
+    /*
+      =====================================
+      UPDATE CONCERT PLAYER
+      =====================================
+    */
+
+
+    function updateConcertPlayer() {
+
+      concertTrack.style.transform =
+        `translateX(-${currentConcertSong * 100}%)`;
+
+
+      concertCounter.textContent =
+        `${String(currentConcertSong + 1).padStart(2, "0")} / ${String(concertSongs.length).padStart(2, "0")}`;
+
+
+      const nextIndex =
+        (
+          currentConcertSong + 1
+        )
+        %
+        concertSongs.length;
+
+
+      concertNextSong.textContent =
+        concertSongs[nextIndex].title;
+
+
+      document
+        .querySelectorAll(
+          ".concert-dot"
+        )
+        .forEach(
+          (dot, index) => {
+
+            dot.classList.toggle(
+              "active",
+              index === currentConcertSong
+            );
+
+          }
+        );
+
+
+      document
+        .querySelectorAll(
+          ".setlist-song"
+        )
+        .forEach(
+          (row, index) => {
+
+            row.classList.toggle(
+              "active",
+              index === currentConcertSong
+            );
+
+          }
+        );
+
+    }
+
+
+    /*
+      =====================================
+      PLAYER NAVIGATION
+      =====================================
+    */
+
+
+    function goToConcertSong(index) {
+
+      currentConcertSong =
+        Math.max(
+          0,
+          Math.min(
+            index,
+            concertSongs.length - 1
+          )
+        );
+
+
+      updateConcertPlayer();
+
+    }
+
+
+    function nextConcertSong() {
+
+      currentConcertSong =
+        (
+          currentConcertSong + 1
+        )
+        %
+        concertSongs.length;
+
+
+      updateConcertPlayer();
+
+    }
+
+
+    function previousConcertSong() {
+
+      currentConcertSong--;
+
+
+      if (
+        currentConcertSong < 0
+      ) {
+
+        currentConcertSong =
+          concertSongs.length - 1;
+
+      }
+
+
+      updateConcertPlayer();
+
+    }
+
+
+    /*
+      =====================================
+      MOBILE SWIPE
+      =====================================
+    */
+
+
+    concertViewport.addEventListener(
+
+      "touchstart",
+
+      event => {
+
+        concertTouchStartX =
+          event.touches[0].clientX;
+
+
+        concertTouchCurrentX =
+          concertTouchStartX;
+
+      },
+
+      {
+        passive: true
+      }
+
+    );
+
+
+    concertViewport.addEventListener(
+
+      "touchmove",
+
+      event => {
+
+        concertTouchCurrentX =
+          event.touches[0].clientX;
+
+      },
+
+      {
+        passive: true
+      }
+
+    );
+
+
+    concertViewport.addEventListener(
+
+      "touchend",
+
+      () => {
+
+        const difference =
+          concertTouchStartX
+          -
+          concertTouchCurrentX;
+
+
+        if (
+          Math.abs(difference) < 45
+        ) {
+
+          return;
+
+        }
+
+
+        if (
+          difference > 0
+        ) {
+
+          nextConcertSong();
+
+        } else {
+
+          previousConcertSong();
+
+        }
+
+      }
+
+    );
+
+
+    /*
+      =====================================
+      SONG DETAILS
+      =====================================
+    */
+
+
+    function openSongDetails(index) {
+
+      const song =
+        concertSongs[index];
+
+
+      document
+        .getElementById(
+          "songDetailNumber"
+        )
+        .textContent =
+        String(index + 1)
+          .padStart(2, "0");
+
+
+      document
+        .getElementById(
+          "songDetailTitle"
+        )
+        .textContent =
+        song.title;
+
+
+      document
+        .getElementById(
+          "songDetailArtist"
+        )
+        .textContent =
+        song.artist;
+
+
+      document
+        .getElementById(
+          "songDetailDuration"
+        )
+        .textContent =
+        song.duration;
+
+
+      document
+        .getElementById(
+          "songDetailYear"
+        )
+        .textContent =
+        song.year || "—";
+
+
+      document
+        .getElementById(
+          "songDetailPosition"
+        )
+        .textContent =
+        `${index + 1} / ${concertSongs.length}`;
+
+
+      document
+        .getElementById(
+          "songDetailDescription"
+        )
+        .textContent =
+        song.description;
+
+
+      document
+        .getElementById(
+          "songDetailLyrics"
+        )
+        .textContent =
+        song.lyrics.trim();
+
+
+      document
+        .getElementById(
+          "songDetailOverlay"
+        )
+        .classList
+        .add("active");
+
+
+      document.body.style.overflow =
+        "hidden";
+
+    }
+
+
+    function closeSongDetails() {
+
+      document
+        .getElementById(
+          "songDetailOverlay"
+        )
+        .classList
+        .remove("active");
+
+
+      document.body.style.overflow =
+        "";
+
+    }
+
+
+    document
+      .getElementById(
+        "songDetailOverlay"
+      )
+      .addEventListener(
+
+        "click",
+
+        event => {
+
+          if (
+            event.target.id ===
+            "songDetailOverlay"
+          ) {
+
+            closeSongDetails();
+
+          }
+
         }
 
       );
 
 
-    document
-      .querySelectorAll(".reveal")
-      .forEach(element => {
-
-        observer.observe(element);
-
-      });
-
-
-
-    /*
-      MUSIC REQUESTS
+    createConcertPlayer();
+        /*
+      =====================================
+      MUSIC REQUESTS / SUPABASE
+      =====================================
     */
 
+
     const wishlistEl =
-      document.getElementById("wishlist");
+      document.getElementById(
+        "wishlist"
+      );
 
 
     function renderSongs(songs) {
 
       wishlistEl.innerHTML = "";
 
+
       if (!songs.length) {
+
         wishlistEl.innerHTML =
           '<div class="wishlist-empty">Noch keine Musikwünsche – sei der Erste!</div>';
+
         return;
+
       }
+
 
       songs.forEach(song => {
 
         const row =
-          document.createElement("div");
+          document.createElement(
+            "div"
+          );
 
-        row.className = "song";
+
+        row.className =
+          "song";
+
 
         row.innerHTML = `
-          <span>▶ ${escapeHTML(song.text)}</span>
+
+          <span>
+            ▶ ${escapeHTML(song.text)}
+          </span>
+
           <button
             class="song-like"
             data-id="${song.id}"
-          >♡ ${song.likes}</button>
+          >
+            ♡ ${song.likes}
+          </button>
+
         `;
 
-        row
-          .querySelector(".song-like")
-          .addEventListener("click", () => likeSong(song.id));
 
-        wishlistEl.appendChild(row);
+        row
+          .querySelector(
+            ".song-like"
+          )
+          .addEventListener(
+
+            "click",
+
+            () => {
+
+              likeSong(song.id);
+
+            }
+
+          );
+
+
+        wishlistEl
+          .appendChild(row);
 
       });
 
@@ -1749,20 +5294,61 @@
 
     async function loadSongs() {
 
+      /*
+        Falls Supabase gerade nicht geladen werden konnte,
+        bleibt die restliche Webseite trotzdem funktionsfähig.
+      */
+
+
+      if (!sb) {
+
+        wishlistEl.innerHTML =
+          '<div class="wishlist-empty">Musikwünsche aktuell nicht erreichbar.</div>';
+
+        return;
+
+      }
+
+
       try {
 
-        const { data, error } =
+        const {
+          data,
+          error
+        } =
           await sb
+
             .from("songs")
-            .select("id, text, likes")
-            .order("likes", { ascending: false })
-            .order("created_at", { ascending: false });
+
+            .select(
+              "id, text, likes"
+            )
+
+            .order(
+              "likes",
+              {
+                ascending: false
+              }
+            )
+
+            .order(
+              "created_at",
+              {
+                ascending: false
+              }
+            );
+
 
         if (error) {
+
           throw error;
+
         }
 
-        renderSongs(data);
+
+        renderSongs(
+          data || []
+        );
 
       } catch (error) {
 
@@ -1770,6 +5356,7 @@
           "Musikwünsche konnten nicht geladen werden:",
           error
         );
+
 
         wishlistEl.innerHTML =
           '<div class="wishlist-empty">Musikwünsche aktuell nicht erreichbar.</div>';
@@ -1781,20 +5368,45 @@
 
     async function likeSong(id) {
 
+      if (!sb) {
+
+        alert(
+          "Die Datenbankverbindung ist aktuell nicht verfügbar."
+        );
+
+        return;
+
+      }
+
+
       try {
 
-        const { error } =
-          await sb.rpc("increment_song_likes", { song_id: id });
+        const {
+          error
+        } =
+          await sb.rpc(
+            "increment_song_likes",
+            {
+              song_id: id
+            }
+          );
+
 
         if (error) {
+
           throw error;
+
         }
+
 
         await loadSongs();
 
       } catch (error) {
 
-        console.warn("Like konnte nicht gespeichert werden:", error);
+        console.warn(
+          "Like konnte nicht gespeichert werden:",
+          error
+        );
 
       }
 
@@ -1814,31 +5426,60 @@
 
 
       if (!song) {
+
         return;
+
       }
 
 
-      input.disabled = true;
+      if (!sb) {
+
+        alert(
+          "Die Datenbankverbindung ist aktuell nicht verfügbar."
+        );
+
+        return;
+
+      }
+
+
+      input.disabled =
+        true;
 
 
       try {
 
-        const { error } =
+        const {
+          error
+        } =
           await sb
+
             .from("songs")
-            .insert({ text: song });
+
+            .insert({
+              text: song
+            });
+
 
         if (error) {
+
           throw error;
+
         }
 
+
         input.value = "";
+
 
         await loadSongs();
 
       } catch (error) {
 
-        console.warn("Song konnte nicht gespeichert werden:", error);
+        console.warn(
+          "Song konnte nicht gespeichert werden:",
+          error
+        );
+
 
         alert(
           "Musikwunsch konnte nicht gespeichert werden. Bitte später erneut versuchen."
@@ -1846,21 +5487,10 @@
 
       } finally {
 
-        input.disabled = false;
+        input.disabled =
+          false;
 
       }
-
-    }
-
-
-    function escapeHTML(text) {
-
-      const div =
-        document.createElement("div");
-
-      div.textContent = text;
-
-      return div.innerHTML;
 
     }
 
@@ -1868,10 +5498,12 @@
     loadSongs();
 
 
-
     /*
+      =====================================
       TERMINAL
+      =====================================
     */
+
 
     function openTerminal() {
 
@@ -1887,18 +5519,23 @@
         );
 
 
-      overlay.classList.add(
-        "active"
-      );
+      overlay
+        .classList
+        .add("active");
 
 
       body.innerHTML = `
+
         <div>
+
           <span class="cmd">
             felix@birthday
           </span>:~$
+
           boot party.sh
+
         </div>
+
       `;
 
 
@@ -1926,20 +5563,28 @@
       commands.forEach(
         (command, index) => {
 
-          setTimeout(() => {
+          setTimeout(
+            () => {
 
-            const div =
-              document
-                .createElement("div");
-
-
-            div.textContent =
-              command || " ";
+              const div =
+                document.createElement(
+                  "div"
+                );
 
 
-            body.appendChild(div);
+              div.textContent =
+                command || " ";
 
-          }, (index + 1) * 420);
+
+              body.appendChild(
+                div
+              );
+
+            },
+
+            (index + 1) * 420
+
+          );
 
         }
       );
@@ -1959,12 +5604,14 @@
     }
 
 
-
     /*
-      COPY LINK
+      =====================================
+      COPY URL
+      =====================================
     */
 
-    function copyURL() {
+
+    async function copyURL() {
 
       const url =
         document
@@ -1975,95 +5622,225 @@
           .trim();
 
 
-      navigator.clipboard
-        .writeText(url);
+      try {
+
+        await navigator
+          .clipboard
+          .writeText(url);
 
 
-      alert(
-        "Link wurde kopiert!"
-      );
+        alert(
+          "Link wurde kopiert!"
+        );
+
+      } catch (error) {
+
+        console.warn(
+          "Link konnte nicht automatisch kopiert werden:",
+          error
+        );
+
+
+        alert(
+          "Kopieren wurde vom Browser blockiert.\n\n" +
+          url
+        );
+
+      }
 
     }
 
 
-
     /*
+      =====================================
       PHOTOS
+      =====================================
     */
 
+
     const photoGridEl =
-      document.getElementById("photoGrid");
+      document.getElementById(
+        "photoGrid"
+      );
+
+
+    const PHOTOS_BUCKET =
+      "photos";
 
 
     function renderPhotos(photos) {
 
       photoGridEl.innerHTML = "";
 
+
       if (!photos.length) {
+
         photoGridEl.innerHTML =
           '<div class="photo-empty">Noch keine Fotos hochgeladen.</div>';
+
         return;
+
       }
 
-      photos.forEach(photo => {
 
-        const thumb =
-          document.createElement("div");
+      photos.forEach(
+        photo => {
 
-        thumb.className = "photo-thumb";
+          const thumb =
+            document.createElement(
+              "div"
+            );
 
-        thumb.innerHTML = `
-          <img
-            src="${photo.url}"
-            alt="Party-Foto"
-            loading="lazy"
-          />
-        `;
 
-        thumb.addEventListener("click", () => {
-          openLightbox(photo.url, photo.name);
-        });
+          thumb.className =
+            "photo-thumb";
 
-        photoGridEl.appendChild(thumb);
 
-      });
+          const img =
+            document.createElement(
+              "img"
+            );
+
+
+          img.src =
+            photo.url;
+
+
+          img.alt =
+            "Party-Foto";
+
+
+          img.loading =
+            "lazy";
+
+
+          thumb.appendChild(
+            img
+          );
+
+
+          thumb.addEventListener(
+
+            "click",
+
+            () => {
+
+              openLightbox(
+                photo.url,
+                photo.name
+              );
+
+            }
+
+          );
+
+
+          photoGridEl.appendChild(
+            thumb
+          );
+
+        }
+      );
 
     }
 
 
-    const PHOTOS_BUCKET = "photos";
-
-
     async function loadPhotos() {
+
+      if (!sb) {
+
+        photoGridEl.innerHTML =
+          '<div class="photo-empty">Fotos aktuell nicht erreichbar.</div>';
+
+        return;
+
+      }
+
 
       try {
 
-        const { data, error } =
+        const {
+          data,
+          error
+        } =
           await sb
+
             .storage
-            .from(PHOTOS_BUCKET)
-            .list("", {
-              sortBy: { column: "created_at", order: "desc" }
-            });
+
+            .from(
+              PHOTOS_BUCKET
+            )
+
+            .list(
+              "",
+              {
+
+                sortBy: {
+
+                  column:
+                    "created_at",
+
+                  order:
+                    "desc"
+
+                }
+
+              }
+            );
+
 
         if (error) {
+
           throw error;
+
         }
+
 
         const photos =
           (data || [])
-            .filter(file => file.name !== ".emptyFolderPlaceholder")
-            .map(file => ({
-              name: file.name,
-              url: sb
-                .storage
-                .from(PHOTOS_BUCKET)
-                .getPublicUrl(file.name)
-                .data
-                .publicUrl
-            }));
 
-        renderPhotos(photos);
+            .filter(
+              file =>
+                file.name !==
+                ".emptyFolderPlaceholder"
+            )
+
+            .map(
+              file => {
+
+                const {
+                  data: publicData
+                } =
+                  sb
+
+                    .storage
+
+                    .from(
+                      PHOTOS_BUCKET
+                    )
+
+                    .getPublicUrl(
+                      file.name
+                    );
+
+
+                return {
+
+                  name:
+                    file.name,
+
+                  url:
+                    publicData.publicUrl
+
+                };
+
+              }
+            );
+
+
+        renderPhotos(
+          photos
+        );
 
       } catch (error) {
 
@@ -2071,6 +5848,7 @@
           "Fotos konnten nicht geladen werden:",
           error
         );
+
 
         photoGridEl.innerHTML =
           '<div class="photo-empty">Fotos aktuell nicht erreichbar.</div>';
@@ -2081,22 +5859,39 @@
 
 
     /*
-      LIGHTBOX / DOWNLOAD
+      =====================================
+      PHOTO LIGHTBOX
+      =====================================
     */
 
-    let currentPhoto = null;
+
+    let currentPhoto =
+      null;
 
 
-    function openLightbox(url, name) {
+    function openLightbox(
+      url,
+      name
+    ) {
 
-      currentPhoto = { url, name };
+      currentPhoto = {
+        url,
+        name
+      };
+
 
       document
-        .getElementById("lightboxImage")
-        .src = url;
+        .getElementById(
+          "lightboxImage"
+        )
+        .src =
+        url;
+
 
       document
-        .getElementById("lightboxOverlay")
+        .getElementById(
+          "lightboxOverlay"
+        )
         .classList
         .add("active");
 
@@ -2106,15 +5901,23 @@
     function closeLightbox() {
 
       document
-        .getElementById("lightboxOverlay")
+        .getElementById(
+          "lightboxOverlay"
+        )
         .classList
         .remove("active");
 
-      document
-        .getElementById("lightboxImage")
-        .src = "";
 
-      currentPhoto = null;
+      document
+        .getElementById(
+          "lightboxImage"
+        )
+        .src =
+        "";
+
+
+      currentPhoto =
+        null;
 
     }
 
@@ -2122,36 +5925,69 @@
     async function downloadCurrentPhoto() {
 
       if (!currentPhoto) {
+
         return;
+
       }
+
 
       try {
 
         const response =
-          await fetch(currentPhoto.url);
+          await fetch(
+            currentPhoto.url
+          );
+
 
         if (!response.ok) {
-          throw new Error("Request failed");
+
+          throw new Error(
+            "Request failed"
+          );
+
         }
+
 
         const blob =
           await response.blob();
 
+
         const blobUrl =
-          URL.createObjectURL(blob);
+          URL.createObjectURL(
+            blob
+          );
+
 
         const link =
-          document.createElement("a");
+          document.createElement(
+            "a"
+          );
 
-        link.href = blobUrl;
+
+        link.href =
+          blobUrl;
+
+
         link.download =
-          currentPhoto.name || "party-foto.jpg";
+          currentPhoto.name ||
+          "party-foto.jpg";
 
-        document.body.appendChild(link);
+
+        document.body
+          .appendChild(
+            link
+          );
+
+
         link.click();
+
+
         link.remove();
 
-        URL.revokeObjectURL(blobUrl);
+
+        URL.revokeObjectURL(
+          blobUrl
+        );
 
       } catch (error) {
 
@@ -2160,48 +5996,141 @@
           error
         );
 
-        // Fallback: Foto in neuem Tab öffnen, dort per
-        // Rechtsklick → "Bild speichern unter" möglich.
-        window.open(currentPhoto.url, "_blank");
+
+        window.open(
+          currentPhoto.url,
+          "_blank"
+        );
 
       }
 
     }
 
 
+    /*
+      =====================================
+      PHOTO UPLOAD
+      =====================================
+    */
+
+
     async function uploadPhotos(files) {
+
+      if (!sb) {
+
+        alert(
+          "Die Foto-Datenbank ist aktuell nicht erreichbar."
+        );
+
+        return;
+
+      }
+
 
       try {
 
-        for (const file of Array.from(files)) {
+        for (
+          const file
+          of Array.from(files)
+        ) {
+
+          /*
+            Dateiendung bereinigen
+          */
+
 
           const extension =
-            (file.name.split(".").pop() || "jpg")
-              .toLowerCase()
-              .replace(/[^a-z0-9]/g, "");
+
+            (
+              file.name
+                .split(".")
+                .pop()
+              ||
+              "jpg"
+            )
+
+            .toLowerCase()
+
+            .replace(
+              /[^a-z0-9]/g,
+              ""
+            );
+
+
+          /*
+            Eindeutigen Dateinamen erstellen
+          */
+
+
+          const randomPart =
+
+            (
+              window.crypto &&
+              crypto.randomUUID
+            )
+
+            ?
+
+            crypto.randomUUID()
+
+            :
+
+            Math.random()
+              .toString(36)
+              .slice(2);
+
 
           const path =
-            `${Date.now()}-${crypto.randomUUID()}.${extension}`;
 
-          const { error } =
+            `${Date.now()}-${randomPart}.${extension}`;
+
+
+          /*
+            Datei hochladen
+          */
+
+
+          const {
+            error
+          } =
             await sb
+
               .storage
-              .from(PHOTOS_BUCKET)
-              .upload(path, file);
+
+              .from(
+                PHOTOS_BUCKET
+              )
+
+              .upload(
+                path,
+                file
+              );
+
 
           if (error) {
+
             throw error;
+
           }
 
         }
 
-        alert(files.length + " Foto(s) hochgeladen.");
+
+        alert(
+          files.length +
+          " Foto(s) hochgeladen."
+        );
+
 
         await loadPhotos();
 
       } catch (error) {
 
-        console.warn("Upload fehlgeschlagen:", error);
+        console.warn(
+          "Upload fehlgeschlagen:",
+          error
+        );
+
 
         alert(
           "Foto-Upload fehlgeschlagen. Bitte später erneut versuchen."
@@ -2212,11 +6141,17 @@
     }
 
 
+    /*
+      File-Input
+    */
+
+
     document
       .getElementById(
         "fileInput"
       )
       .addEventListener(
+
         "change",
 
         event => {
@@ -2225,14 +6160,25 @@
             event.target.files;
 
 
-          if (files.length > 0) {
+          if (
+            files.length > 0
+          ) {
 
-            uploadPhotos(files);
+            uploadPhotos(
+              files
+            );
 
           }
 
 
-          event.target.value = "";
+          /*
+            Input zurücksetzen,
+            damit dasselbe Foto später erneut gewählt werden kann.
+          */
+
+
+          event.target.value =
+            "";
 
         }
 
@@ -2242,26 +6188,193 @@
     loadPhotos();
 
 
-    // Lightbox per Klick auf den Hintergrund oder Escape schließen
-    document
-      .getElementById("lightboxOverlay")
-      .addEventListener("click", event => {
+    /*
+      =====================================
+      CLOSE LIGHTBOX ON BACKGROUND
+      =====================================
+    */
 
-        if (event.target.id === "lightboxOverlay") {
-          closeLightbox();
+
+    document
+      .getElementById(
+        "lightboxOverlay"
+      )
+      .addEventListener(
+
+        "click",
+
+        event => {
+
+          if (
+            event.target.id ===
+            "lightboxOverlay"
+          ) {
+
+            closeLightbox();
+
+          }
+
         }
 
-      });
+      );
 
-    document.addEventListener("keydown", event => {
 
-      if (event.key === "Escape") {
-        closeLightbox();
+    /*
+      =====================================
+      KEYBOARD CONTROLS
+      =====================================
+    */
+
+
+    document.addEventListener(
+
+      "keydown",
+
+      event => {
+
+
+        /*
+          ESC
+        */
+
+
+        if (
+          event.key ===
+          "Escape"
+        ) {
+
+          closeLightbox();
+
+          closeSongDetails();
+
+          closeTerminal();
+
+        }
+
+
+        /*
+          Konzert nur mit Pfeiltasten steuern,
+          wenn kein Song-Detail geöffnet ist.
+        */
+
+
+        const songModalOpen =
+
+          document
+            .getElementById(
+              "songDetailOverlay"
+            )
+            .classList
+            .contains(
+              "active"
+            );
+
+
+        if (!songModalOpen) {
+
+
+          if (
+            event.key ===
+            "ArrowRight"
+          ) {
+
+            nextConcertSong();
+
+          }
+
+
+          if (
+            event.key ===
+            "ArrowLeft"
+          ) {
+
+            previousConcertSong();
+
+          }
+
+        }
+
       }
 
-    });
+    );
+
+
+    /*
+      =====================================
+      TERMINAL BACKGROUND CLICK
+      =====================================
+    */
+
+
+    document
+      .getElementById(
+        "terminalOverlay"
+      )
+      .addEventListener(
+
+        "click",
+
+        event => {
+
+          if (
+            event.target.id ===
+            "terminalOverlay"
+          ) {
+
+            closeTerminal();
+
+          }
+
+        }
+
+      );
+
+
+    /*
+      =====================================
+      FINAL SAFETY FALLBACK
+      =====================================
+
+      Falls irgendwo ein externer Dienst
+      einen Fehler verursacht, sollen die
+      Scroll-Inhalte trotzdem sichtbar sein.
+    */
+
+
+    window.addEventListener(
+
+      "error",
+
+      event => {
+
+        console.warn(
+          "Website-Fehler abgefangen:",
+          event.error ||
+          event.message
+        );
+
+
+        document
+          .querySelectorAll(
+            ".reveal"
+          )
+          .forEach(
+            element => {
+
+              element
+                .classList
+                .add("visible");
+
+            }
+          );
+
+      }
+
+    );
+
 
   </script>
 
 </body>
+
 </html>
